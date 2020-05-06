@@ -22,6 +22,16 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       phone: "978-475-7972")
     }
 
+    let!(:campground3) { Campground.create(
+      name: "Lorraine Park Campground",
+      street: "133 Jenkins Rd",
+      city: "Andover",
+      state: "MA",
+      zip: "01810",
+      url: "https://www.mass.gov/locations/harold-parker-state-forest",
+      phone: "978-475-7972")
+    }
+
     it "returns a successful response status and a content type of json" do
       get :index
 
