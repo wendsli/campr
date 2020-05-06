@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+campground1 =  {
+  name: "Minuteman Campground",
+  street: "177 Littleton Rd",
+  city: "Ayer",
+  state: "MA",
+  zip: "01432",
+  url: "https://minutemancampground.com/",
+  phone: "978-772-0042",
+  created_at: "2020-05-06T02:28:55.627Z",
+  updated_at: "2020-05-06T02:28:55.627Z"
+}
