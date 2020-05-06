@@ -1,7 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Codeship Status for wendsli/campr](https://app.codeship.com/projects/664cba80-714a-0138-4ac2-2acdf287ecee/status?branch=master)](https://app.codeship.com/projects/395402)
+
+Project Name: campr
+
+Description: Research and review campgrounds and campsites to help
+  plan your next trip to the great outdoors.
+
+Author: Wesley Davis
 
 Things you may want to cover:
 
