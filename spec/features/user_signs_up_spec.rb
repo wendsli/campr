@@ -6,18 +6,13 @@ feature 'user registers', %Q{
   So that I can create an account
 } do
 
-  # Acceptance Criteria:
-  # * I must specify a valid email address,
-  #   password, and password confirmation
-  # * If I don't specify the required information, I am presented with
-  #   an error message
-
   scenario 'provide valid registration information' do
     visit new_user_registration_path
 
+    fill_in 'User Name', with: "john_example"
     fill_in 'Email', with: 'john@example.com'
-    fill_in 'Password', with: 'password'
-    fill_in 'Password confirmation', with: 'password'
+    fill_in 'Password *', with: 'password'
+    fill_in 'Password Confirmation *', with: 'password'
 
     click_button 'Sign up'
 
@@ -25,11 +20,27 @@ feature 'user registers', %Q{
     expect(page).to have_content('Sign Out')
   end
 
-  scenario 'provide invalid registration information' do
+  scenario 'provide no registration information' do
     visit new_user_registration_path
 
     click_button 'Sign up'
     expect(page).to have_content("can't be blank")
+    expect(page).to_not have_content('Sign Out')
+  end
+
+  scenario 'provide duplicate registration information' do
+    User.create(user_name: "john_example", email: "john@example.com", password: "password")
+
+    visit new_user_registration_path
+
+    fill_in 'User Name *', with: "john_example"
+    fill_in 'Email *', with: 'john@example.com'
+    fill_in 'Password *', with: 'password'
+    fill_in 'Password Confirmation *', with: 'password'
+
+    click_button 'Sign up'
+
+    expect(page).to have_content("User name has already been taken")
     expect(page).to_not have_content('Sign Out')
   end
 end
