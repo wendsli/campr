@@ -8,7 +8,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       city: "Ayer",
       state: "MA",
       zip: "01432",
-      url: "https://minutemancampground.com/",
+      website: "https://minutemancampground.com/",
       phone: "978-772-0042")
     }
 
@@ -18,7 +18,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       city: "Andover",
       state: "MA",
       zip: "01810",
-      url: "https://www.mass.gov/locations/harold-parker-state-forest",
+      website: "https://www.mass.gov/locations/harold-parker-state-forest",
       phone: "978-475-7972")
     }
 
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       city: "Andover",
       state: "MA",
       zip: "01810",
-      url: "https://www.mass.gov/locations/harold-parker-state-forest",
+      website: "https://www.mass.gov/locations/harold-parker-state-forest",
       phone: "978-475-7972")
     }
 
@@ -50,7 +50,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       expect(response_body[0]["city"]).to eq campground1.city
       expect(response_body[0]["state"]).to eq campground1.state
       expect(response_body[0]["zip"]).to eq campground1.zip
-      expect(response_body[0]["url"]).to eq campground1.url
+      expect(response_body[0]["website"]).to eq campground1.website
       expect(response_body[0]["phone"]).to eq campground1.phone
 
       expect(response_body[1]["name"]).to eq campground2.name
@@ -58,7 +58,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       expect(response_body[1]["city"]).to eq campground2.city
       expect(response_body[1]["state"]).to eq campground2.state
       expect(response_body[1]["zip"]).to eq campground2.zip
-      expect(response_body[1]["url"]).to eq campground2.url
+      expect(response_body[1]["website"]).to eq campground2.website
       expect(response_body[1]["phone"]).to eq campground2.phone
     end
   end

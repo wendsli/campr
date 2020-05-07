@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_014307) do
+ActiveRecord::Schema.define(version: 2020_05_07_021008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_014307) do
     t.string "city", null: false
     t.string "state", null: false
     t.string "zip", null: false
-    t.string "url", null: false
+    t.string "website", null: false
     t.string "phone"
     t.string "image"
     t.decimal "latitude", precision: 10, scale: 6
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_014307) do
     t.boolean "waste_disposal", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["url"], name: "index_campgrounds_on_url", unique: true
+    t.index ["website"], name: "index_campgrounds_on_website", unique: true
   end
 
   create_table "users", force: :cascade do |t|
