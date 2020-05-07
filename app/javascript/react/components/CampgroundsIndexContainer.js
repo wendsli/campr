@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import CampgroundTile from "./CampgroundTile"
 
@@ -35,6 +36,9 @@ const CampgroundsIndexContainer = (props) => {
   return(
     <div>
       {campgroundTiles}
+      <Link className="button" to="/campgrounds/new">
+        Add a new Campground
+      </Link>
     </div>
   )
 };
