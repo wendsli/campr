@@ -18,10 +18,10 @@ class Api::V1::CampgroundsController < ApplicationController
   private
 
   def campground_params
-      params.require(:campground).permit(
-        :name, :street, :city, :state, :zip, :website, :phone, :image, :latitude,
-          :longitude, :store, :firewood, :bathrooms, :showers, :utilities,
-          :waste_disposal
-      )
+    params.require(:campground).permit(
+      :name, :street, :city, :state, :zip, :website, :phone, :image, :latitude,
+        :longitude, :store, :firewood, :bathrooms, :showers, :utilities,
+        :waste_disposal
+    )
   end
 end
