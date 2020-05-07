@@ -1,15 +1,17 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
-const CampgroundTile = (props) => {
+const CampgroundIndexTile = (props) => {
   const camp = props.campground
 
   return (
-    <div className="campground-tile">
-      <h5><a href={camp.url} target="_blank">{camp.name}</a></h5>
-      <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
-      <a href="tel:${camp.phone}">{camp.phone}</a>
+    <div className="callout campground-index-tile">
+      <Link to={`/campgrounds/${camp.id}`}>
+        <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
+        <p>{camp.city}, {camp.state}</p>
+      </Link>
     </div>
   );
 };
 
-export default CampgroundTile
+export default CampgroundIndexTile

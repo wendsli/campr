@@ -5,6 +5,10 @@ class Api::V1::CampgroundsController < ApplicationController
     render json: Campground.all
   end
 
+  def show
+    render json: Campground.find(params[:id])
+  end
+
   def create
     campground = Campground.new(campground_params)
     if campground.save
