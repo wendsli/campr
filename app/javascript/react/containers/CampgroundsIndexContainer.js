@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import CampgroundTile from "./CampgroundTile"
+import CampgroundIndexTile from "../components/CampgroundIndexTile"
 
 const CampgroundsIndexContainer = (props) => {
   const [campgrounds, setCampgrounds] = useState([]);
@@ -25,10 +25,11 @@ const CampgroundsIndexContainer = (props) => {
 
   let campgroundTiles;
   if (campgrounds.length === 0) {
-    campgroundTiles = <p>No campgrounds yet</p>
+    campgroundTiles = <p>(Loading campgrounds...)</p>
   } else {
     campgroundTiles = campgrounds.map((campground) => {
-        return <CampgroundTile key={campground.id} campground={campground} />
+        return <CampgroundIndexTile key={campground.id}
+          campground={campground} />
     });
   };
 
