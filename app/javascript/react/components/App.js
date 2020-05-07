@@ -5,8 +5,8 @@ import { faStore, faTree, faRestroom, faShower, faChargingStation, faTrashAlt } 
 
 library.add(faStore, faTree, faRestroom, faShower, faChargingStation, faTrashAlt)
 
-import CampgroundsIndexContainer from "./CampgroundsIndexContainer"
-import NewCampgroundContainer from "./NewCampgroundContainer"
+import CampgroundsIndexContainer from "../containers/CampgroundsIndexContainer"
+import NewCampgroundContainer from "../containers/NewCampgroundContainer"
 
 export const App = (props) => {
   return (

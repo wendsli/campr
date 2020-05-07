@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-import NewCampgroundForm from "./NewCampgroundForm"
+import NewCampgroundForm from "../components/NewCampgroundForm"
 
 const NewCampgroundContainer = (props) => {
   // const [redirect, setRedirect] = useState(false)

@@ -19,7 +19,7 @@ class Api::V1::CampgroundsController < ApplicationController
 
   def campground_params
       params.require(:campground).permit(
-        :name, :street, :city, :state, :zip, :url, :phone, :image, :latitude,
+        :name, :street, :city, :state, :zip, :website, :phone, :image, :latitude,
           :longitude, :store, :firewood, :bathrooms, :showers, :utilities,
           :waste_disposal
       )
