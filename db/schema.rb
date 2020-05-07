@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_021008) do
+ActiveRecord::Schema.define(version: 2020_05_07_035430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_021008) do
     t.boolean "bathrooms", default: false
     t.boolean "showers", default: false
     t.boolean "utilities", default: false
-    t.boolean "waste_disposal", default: false
+    t.boolean "waste", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["website"], name: "index_campgrounds_on_website", unique: true
