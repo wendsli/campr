@@ -12,8 +12,9 @@ campground1 =  {
   city: "Ayer",
   state: "MA",
   zip: "01432",
-  url: "https://minutemancampground.com/",
+  website: "https://minutemancampground.com/",
   phone: "978-772-0042",
+  image: "https://minutemancampground.com/wp-content/uploads/2013/08/Two-Cabins-FW.jpg",
   created_at: "2020-05-06T02:28:55.627Z",
   updated_at: "2020-05-06T02:28:55.627Z"
 }

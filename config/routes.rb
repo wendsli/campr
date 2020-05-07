@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/campgrounds', to: "static_pages#index"
+  get '/campgrounds/:id', to: "static_pages#index"
 
   namespace :api do
     namespace :v1 do
-      resources :campgrounds, only: [:index]
+      resources :campgrounds, only: [:index, :show]
     end
   end
 end
