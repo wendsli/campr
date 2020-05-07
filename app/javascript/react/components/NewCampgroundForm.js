@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import ErrorList from "./ErrorList"
 
@@ -164,6 +165,7 @@ const NewCampgroundForm = (props) => {
         </div>
 
         <div className="campground-form-boolean-fields">
+          <h5>Campground Services - click to add!</h5>
           <input
             type="checkbox"
             name="store"
@@ -171,7 +173,7 @@ const NewCampgroundForm = (props) => {
             onChange={handleChange}
             value={fieldValues.store}
           />
-          <label htmlFor="store">Store</label>
+          <FontAwesomeIcon icon="store" size="2x" />
 
           <input
             type="checkbox"
@@ -180,7 +182,7 @@ const NewCampgroundForm = (props) => {
             onChange={handleChange}
             value={fieldValues.firewood}
           />
-          <label htmlFor="name">Firewood</label>
+          <FontAwesomeIcon icon="tree" size="2x" />
 
           <input
             type="checkbox"
@@ -189,7 +191,7 @@ const NewCampgroundForm = (props) => {
             onChange={handleChange}
             value={fieldValues.bathrooms}
           />
-          <label htmlFor="name">Bathrooms</label>
+          <FontAwesomeIcon icon="restroom" size="2x" />
 
           <input
             type="checkbox"
@@ -198,7 +200,7 @@ const NewCampgroundForm = (props) => {
             onChange={handleChange}
             value={fieldValues.showers}
           />
-          <label htmlFor="showers">Showers</label>
+          <FontAwesomeIcon icon="shower" size="2x" />
 
           <input
             type="checkbox"
@@ -207,7 +209,7 @@ const NewCampgroundForm = (props) => {
             onChange={handleChange}
             value={fieldValues.utilities}
           />
-          <label htmlFor="utilities">Utilities</label>
+          <FontAwesomeIcon icon="charging-station" size="2x" />
 
           <input
             type="checkbox"
@@ -216,7 +218,7 @@ const NewCampgroundForm = (props) => {
             onChange={handleChange}
             value={fieldValues.waste}
           />
-          <label htmlFor="waste">Waste Disposal</label>
+          <FontAwesomeIcon icon="trash-alt" size="2x" />
         </div>
 
         <div>
