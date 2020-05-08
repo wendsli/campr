@@ -34,8 +34,10 @@ const CampgroundsIndexContainer = (props) => {
   };
 
   return(
-    <div>
-      {campgroundTiles}
+    <div className="grid-container">
+      <div className="grid-x grid-margin-x grid-margin-y">
+        {campgroundTiles}
+      </div>
     </div>
   )
 };
