@@ -7,7 +7,7 @@ const CampgroundIndexTile = (props) => {
   return (
     <div className="callout campground-index-tile">
       <Link to={`/campgrounds/${camp.id}`}>
-        <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
+        <h5>{camp.name}</h5>
         <p>{camp.city}, {camp.state}</p>
       </Link>
     </div>

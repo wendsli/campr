@@ -8,7 +8,7 @@ const NewCampgroundForm = (props) => {
   const [submitErrors, setSubmitErrors] = useState({});
 
   const [fieldValues, setFieldValues] = useState({
-    name: "", street: "", city: "", state: "", zip: "", url: "", phone: "",
+    name: "", street: "", city: "", state: "", zip: "", website: "", phone: "",
     image: "", latitude: "", longitude: "", store: false, firewood: false,
     bathrooms: false, showers: false, utilities: false, waste_disposal: false
   });
@@ -21,7 +21,7 @@ const NewCampgroundForm = (props) => {
   };
 
   const validateForm = () => {
-    const requiredFields = ["name", "street", "city", "state", "zip", "url"];
+    const requiredFields = ["name", "street", "city", "state", "zip", "website"];
     let newErrors = {};
 
     requiredFields.forEach((field) => {
@@ -33,11 +33,11 @@ const NewCampgroundForm = (props) => {
       };
     });
 
-    if (!fieldValues["url"].includes("http://") &&
-      (!fieldValues["url"].includes("https://"))) {
+    if (!fieldValues["website"].includes("http://") &&
+      (!fieldValues["website"].includes("https://"))) {
       newErrors = {
         ...newErrors,
-        ["url"]: "must include full HTTP(S) address",
+        ["website"]: "must include full HTTP(S) address",
       };
     };
 
@@ -116,11 +116,11 @@ const NewCampgroundForm = (props) => {
           <input
             aria-label="Website"
             type="text"
-            name="url"
-            id="url"
+            name="website"
+            id="website"
             onChange={handleChange}
             value={fieldValues.website}
-            placeholder="Campground website - http://...."
+            placeholder="Campground website: http://...."
           />
 
           <input
@@ -140,7 +140,7 @@ const NewCampgroundForm = (props) => {
             id="image"
             onChange={handleChange}
             value={fieldValues.image}
-            placeholder="Image URL"
+            placeholder="Image URL: http://..."
           />
 
           <input
