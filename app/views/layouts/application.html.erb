@@ -3,61 +3,44 @@
 <head>
   <title>Campr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-    crossorigin="anonymous"
-  />
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <nav class="top-bar">
-    <h1><a href="/">campr</a></h1>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
-
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
-
-  <%= yield %>
-
-  <%= javascript_include_tag 'application' %>
-
-  <%- if Rails.env.development? || Rails.env.test? -%>
-    <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
+  <div class="sticky" data-sticky data-options="marginTop:0;">
+    <nav class="top-bar">
+      <h3><a href="/">campr</a></h3>
+      <section class="top-bar-section">
+        <ul class="right">
+            <%- if current_user -%>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <%- else -%>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <%- end -%>
+        </ul>
+      </section>
+    </nav>
+  </div>
+  <div class="content">
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
     <%- end -%>
-  <%- end -%>
-  <%= javascript_pack_tag 'application' %>
 
-  <%= yield :extra_footer %>
+    <%= yield %>
 
-  <script src="https://unpkg.com/react/umd/react.production.min.js"
-    crossorigin>
-  </script>
-  <script
-    src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
-    crossorigin>
-  </script>
-  <script
-    src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
-    crossorigin>
-  </script>
+    <%= javascript_include_tag 'application' %>
+
+    <%- if Rails.env.development? || Rails.env.test? -%>
+      <%= javascript_tag do %>
+        window.railsEnv = '<%= Rails.env %>'
+      <%- end -%>
+    <%- end -%>
+    <%= javascript_pack_tag 'application' %>
+
+    <%= yield :extra_footer %>
+  </div>
 </body>
 </html>

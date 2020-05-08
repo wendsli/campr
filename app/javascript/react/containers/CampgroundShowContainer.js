@@ -28,7 +28,6 @@ const CampgroundShowContainer = (props) => {
   return(
     <div>
       <CampgroundShowTile campground={campground} />
-      <Link className="button" to="/campgrounds">All Campgrounds</Link>
     </div>
   )
 }

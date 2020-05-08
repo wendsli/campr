@@ -6,10 +6,12 @@ const CampgroundIndexTile = (props) => {
 
   return (
     <div className="callout campground-index-tile cell small-12 medium-4 text-center">
-      <img className="campground-index-image" src={camp.image} />
       <Link to={`/campgrounds/${camp.id}`}>
-        <h5>{camp.name}</h5>
-        <p>{camp.city}, {camp.state}</p>
+        <img className="campground-index-image" src={camp.image} />
+        <div className="campground-index-text">
+          <h5>{camp.name}</h5>
+          <p>{camp.city}, {camp.state}</p>
+        </div>
       </Link>
     </div>
   );
