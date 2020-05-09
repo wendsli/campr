@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Campr</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-  <nav class="top-bar">
-    <h1><a href="/">campr</a></h1>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
-
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
+  <head>
+    <title>Campr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="sticky" data-sticky data-options="marginTop:0;">
+      <nav class="nav top-bar">
+          <ul class="title-area">
+            <li class="site-name">
+              <h3><a href="/">campr</a></h3>
+            </li>
+          </ul>
+        <section class="top-bar-section">
+          <ul class="left">
+            <li class="divider"></li>
+            <li><a href="/campgrounds">Campgrounds</a></li>
+            <li class="divider"></li>
+          </ul>
+        </section>
+        <section class="top-bar-right">
+          <ul>
+            <%- if current_user -%>
+              <li class="user-name"><%= current_user.user_name %></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <%- else -%>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <%- end -%>
+          </ul>
+        </section>
+      </nav>
     </div>
-  <%- end -%>
+    <div class="content">
+      <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
+      <%- end -%>
 
-  <%= yield %>
+      <%= yield %>
 
-  <%= javascript_include_tag 'application' %>
+      <%= javascript_include_tag 'application' %>
 
-  <%- if Rails.env.development? || Rails.env.test? -%>
-    <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
-    <%- end -%>
-  <%- end -%>
-  <%= javascript_pack_tag 'application' %>
+      <%- if Rails.env.development? || Rails.env.test? -%>
+        <%= javascript_tag do %>
+          window.railsEnv = '<%= Rails.env %>'
+        <%- end -%>
+      <%- end -%>
+      <%= javascript_pack_tag 'application' %>
 
-  <%= yield :extra_footer %>
-</body>
+      <%= yield :extra_footer %>
+    </div>
+  </body>
 </html>

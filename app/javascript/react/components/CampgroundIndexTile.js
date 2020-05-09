@@ -5,10 +5,13 @@ const CampgroundIndexTile = (props) => {
   const camp = props.campground
 
   return (
-    <div className="callout campground-index-tile">
+    <div className="callout campground-index-tile cell small-12 medium-4 text-center">
       <Link to={`/campgrounds/${camp.id}`}>
-        <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
-        <p>{camp.city}, {camp.state}</p>
+        <img className="campground-index-image" src={camp.image} />
+        <div className="campground-index-text">
+          <h5>{camp.name}</h5>
+          <p>{camp.city}, {camp.state}</p>
+        </div>
       </Link>
     </div>
   );
