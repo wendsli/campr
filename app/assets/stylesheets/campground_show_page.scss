@@ -50,29 +50,3 @@
     color: black;
   };
 }
-
-
-
-
-
-
-
-// <div className="callout campground-show-tile">
-//   <div className="campground-overview">
-//     <img className="campground-show-image" src={camp.image} />
-//     <div className="campground-text-info">
-//       <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
-//       <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
-//       <p><a href="tel:${camp.phone}">{camp.phone}</a></p>
-//       <p>{campgroundLatLong}</p>
-//     </div>
-//   </div>
-//   <div className="campground-icons">
-//     {store}
-//     {firewood}
-//     {bathrooms}
-//     {showers}
-//     {utilities}
-//     {waste}
-//   </div>
-// </div>

@@ -9,17 +9,27 @@
 <body>
   <div class="sticky" data-sticky data-options="marginTop:0;">
     <nav class="top-bar">
-      <h3><a href="/">campr</a></h3>
+      <ul class="title-area">
+        <li class="site-name">
+          <h3><a href="/">campr</a></h3>
+        </li>
+      </ul>
       <section class="top-bar-section">
-        <ul class="right">
-            <%- if current_user -%>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-            <%- else -%>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
-            <%- end -%>
+        <ul class="left">
+          <li class="divider"></li>
+          <li><a href="/campgrounds">Campgrounds</a></li>
+          <li class="divider"></li>
         </ul>
       </section>
+      <div class="top-bar-right">
+        <ul>
+          <%- if current_user -%>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%- else -%>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%- end -%>
+      </div>
     </nav>
   </div>
   <div class="content">
