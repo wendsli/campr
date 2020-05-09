@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Campr</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="sticky" data-sticky data-options="marginTop:0;">
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="site-name">
-          <h3><a href="/">campr</a></h3>
-        </li>
-      </ul>
-      <section class="top-bar-section">
-        <ul class="left">
-          <li class="divider"></li>
-          <li><a href="/campgrounds">Campgrounds</a></li>
-          <li class="divider"></li>
-        </ul>
-      </section>
-      <div class="top-bar-right">
-        <ul>
-          <%- if current_user -%>
-            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-          <%- else -%>
-            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-            <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <%- end -%>
-      </div>
-    </nav>
-  </div>
-  <div class="content">
-    <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
-      </div>
-    <%- end -%>
-
-    <%= yield %>
-
-    <%= javascript_include_tag 'application' %>
-
-    <%- if Rails.env.development? || Rails.env.test? -%>
-      <%= javascript_tag do %>
-        window.railsEnv = '<%= Rails.env %>'
+  <head>
+    <title>Campr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="sticky" data-sticky data-options="marginTop:0;">
+      <nav class="nav top-bar">
+          <ul class="title-area">
+            <li class="site-name">
+              <h3><a href="/">campr</a></h3>
+            </li>
+          </ul>
+        <section class="top-bar-section">
+          <ul class="left">
+            <li class="divider"></li>
+            <li><a href="/campgrounds">Campgrounds</a></li>
+            <li class="divider"></li>
+          </ul>
+        </section>
+        <section class="top-bar-right">
+          <ul>
+            <%- if current_user -%>
+              <li class="user-name"><%= current_user.user_name %></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <%- else -%>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <%- end -%>
+          </ul>
+        </section>
+      </nav>
+    </div>
+    <div class="content">
+      <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
       <%- end -%>
-    <%- end -%>
-    <%= javascript_pack_tag 'application' %>
 
-    <%= yield :extra_footer %>
-  </div>
-</body>
+      <%= yield %>
+
+      <%= javascript_include_tag 'application' %>
+
+      <%- if Rails.env.development? || Rails.env.test? -%>
+        <%= javascript_tag do %>
+          window.railsEnv = '<%= Rails.env %>'
+        <%- end -%>
+      <%- end -%>
+      <%= javascript_pack_tag 'application' %>
+
+      <%= yield :extra_footer %>
+    </div>
+  </body>
 </html>

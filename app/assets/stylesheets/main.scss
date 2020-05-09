@@ -1,3 +1,8 @@
+$campr-darkblue: #23293F;
+$campr-ivory: #FEFEEE;
+$campr-blue: #005377;
+$campr-black: #0F0F0F;
+
 body {
   background-image: url(brandon-montrone-green-pine-trees-muted.jpeg);
   background-size: cover;
@@ -8,9 +13,8 @@ body {
 }
 
 .top-bar {
-  background-color: #202D41;
-  margin-bottom: 1rem;
-  border-bottom: 3px solid #FEFEEE;
+  background-color: $campr-darkblue;
+  border-bottom: 3px solid $campr-ivory;
   padding-bottom: 0rem;
 
   h3 {
@@ -24,7 +28,7 @@ body {
   };
 
   a {
-    color: #FEFEEE;
+    color: $campr-ivory;
   };
 }
 
@@ -38,7 +42,7 @@ body {
 
 .campground-index-tile {
   border-radius: 20px;
-  border-color: #202D41;
+  border-color: $campr-darkblue;
   border-width: 3px;
   background-color: rgba(254,254,238,0.85);
 
@@ -49,7 +53,7 @@ body {
 
   a {
     margin-top: 20px;
-    color: #202D41;
+    color: $campr-darkblue;
 
     h5 {
       font-weight: bold;
