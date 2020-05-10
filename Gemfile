@@ -51,6 +51,5 @@ gem 'database_cleaner', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
-gem 'bootstrap', '~> 4.3.1'
 gem 'foundation-rails', '~> 6.5'
 gem 'webpacker', '~> 3.3'

@@ -22,11 +22,9 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@rails/webpacker": "3.5",
     "babel-loader": "^8.0.6",
-    "bootstrap": "^4.4.1",
     "lodash": "^4.17.15",
     "prop-types": "~15.6.0",
     "react": "~16.8.0",
-    "react-bootstrap": "^1.0.1",
     "react-dom": "~16.8.0",
     "react-router-dom": "5.0.0",
     "redbox-react": "1.6.0"
