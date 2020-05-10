@@ -1,11 +1,52 @@
-.campground-icon {
-  margin: 10px;
-}
+.callout.campground-show-tile {
+  background-color: rgba(254,254,238,0.9);
+  border-radius: 20px;
+  border-width: 3px;
+  border-color: #202D41;
+  max-width: 90%;
+  float: none;
+  margin: auto;
+  margin-top: 3rem;
 
-.unavailable-service-campground-icon {
-  color: gray;
-}
+  .campground-overivew {
+    display: inline-block;
 
-.available-service-campground-icon {
-  color: black;
+    .grid-container.grid-x {
+      padding: 2rem;
+    }
+  };
+
+  img {
+    align-self: left;
+    max-width: 50%;
+    border-radius: 20px;
+    padding: 5px;
+    margin-right: 2rem;
+  };
+
+  .campground-info {
+    align: middle;
+
+    a {
+      color: #202D41;
+      font-weight: bold;
+    }
+
+    p {
+      color: #202D41;
+    }
+  }
+
+  .campground-icon {
+    margin: 10px;
+
+  };
+
+  .unavailable-service-campground-icon {
+    color: gray;
+  };
+
+  .available-service-campground-icon {
+    color: black;
+  };
 }

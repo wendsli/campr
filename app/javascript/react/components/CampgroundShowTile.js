@@ -84,19 +84,23 @@ const CampgroundShowTile = (props) => {
   }
 
   return (
-    <div className="campground-show-tile">
-      <img className="campground-show-image" src={camp.image} />
-      <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
-      <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
-      <p><a href="tel:${camp.phone}">{camp.phone}</a></p>
-      <p>{campgroundLatLong}</p>
-      <div className="campground-icons">
-        {store}
-        {firewood}
-        {bathrooms}
-        {showers}
-        {utilities}
-        {waste}
+    <div className="callout campground-show-tile">
+      <div className="campground-overview grid-container grid-x">
+        <img className="campground-show-image" src={camp.image} />
+        <div className="campground-info">
+          <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
+          <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
+          <p><a href="tel:${camp.phone}">{camp.phone}</a></p>
+          <p>{campgroundLatLong}</p>
+          <div className="campground-icons">
+          {store}
+          {firewood}
+          {bathrooms}
+          {showers}
+          {utilities}
+          {waste}
+          </div>
+        </div>
       </div>
     </div>
   );
