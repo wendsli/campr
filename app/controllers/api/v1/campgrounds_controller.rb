@@ -10,13 +10,9 @@ class Api::V1::CampgroundsController < ApplicationController
   end
 
   def create
-    campground = Campground.new(campground_params)
-    if campground.save
-      render json: { campground: campground }
-    else
-      render json: { error: campground.errors.full_messages }, status:
-        :unprocessable_entity
-    end
+    render json: {
+      campground: Campground.where(website: params["website"]).first_or_create(campground_params)
+    }
   end
 
   private

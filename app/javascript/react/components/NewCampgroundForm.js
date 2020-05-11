@@ -71,7 +71,7 @@ const NewCampgroundForm = (props) => {
                 id="name"
                 onChange={handleFormTextChange}
                 value={props.fieldValues.name}
-                placeholder="*Campground name"
+                placeholder="* Campground name"
               />
 
               <input
@@ -93,7 +93,7 @@ const NewCampgroundForm = (props) => {
                 id="website"
                 onChange={handleFormTextChange}
                 value={props.fieldValues.website}
-                placeholder="Campground website: http://...."
+                placeholder="* Campground website: http://...."
               />
             </div>
 
@@ -106,7 +106,7 @@ const NewCampgroundForm = (props) => {
                 id="street"
                 onChange={handleFormTextChange}
                 value={props.fieldValues.street}
-                placeholder="Street"
+                placeholder="* Street address"
               />
 
               <input
@@ -117,7 +117,7 @@ const NewCampgroundForm = (props) => {
                 id="city"
                 onChange={handleFormTextChange}
                 value={props.fieldValues.city}
-                placeholder="City"
+                placeholder="* City"
               />
 
               <select
@@ -140,7 +140,7 @@ const NewCampgroundForm = (props) => {
                 id="zip"
                 onChange={handleFormTextChange}
                 value={props.fieldValues.zip}
-                placeholder="Zip code"
+                placeholder="* Zip code"
               />
             </div>
 
