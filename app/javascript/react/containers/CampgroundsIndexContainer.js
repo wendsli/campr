@@ -39,10 +39,6 @@ const CampgroundsIndexContainer = (props) => {
       <div className="grid-x grid-margin-x grid-margin-y">
         {campgroundTiles}
       </div>
-    <div>
-      <Link className="button" to="/campgrounds/new">
-        Add a new Campground
-      </Link>
     </div>
   )
 };

@@ -110,4 +110,72 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         expect(response_body["phone"]).to_not eq campground2.phone
     end
   end
+
+  describe "POST#new" do
+    let!(:new_campground_hash) { { campground: {
+      name: "Minuteman Campground",
+      street: "177 Littleton Rd",
+      city: "Ayer",
+      state: "MA",
+      zip: "01432",
+      website: "https://minutemancampground.com/",
+      phone: "978-772-0042",
+      store: true,
+      firewood: false,
+      bathrooms: true,
+      showers: false,
+      utilities: false,
+      waste: true
+    } } }
+
+    it "creates a new Campground and returns the Campground as json" do
+      previous_count = Campground.count
+      post :create, params: new_campground_hash, format: :json
+      response_body = JSON.parse(response.body)
+      new_count = Campground.count
+
+      expect(new_count).to eq(previous_count + 1)
+      expect(response_body["campground"].length).to eq 19
+      expect(response_body["campground"]["name"]).to eq "Minuteman Campground"
+      expect(response_body["campground"]["street"]).to eq "177 Littleton Rd"
+      expect(response_body["campground"]["city"]).to eq "Ayer"
+      expect(response_body["campground"]["state"]).to eq "MA"
+      expect(response_body["campground"]["zip"]).to eq "01432"
+      expect(response_body["campground"]["website"]).to eq "https://minutemancampground.com/"
+      expect(response_body["campground"]["phone"]).to eq "978-772-0042"
+      expect(response_body["campground"]["store"]).to eq true
+      expect(response_body["campground"]["firewood"]).to eq false
+      expect(response_body["campground"]["bathrooms"]).to eq true
+      expect(response_body["campground"]["showers"]).to eq false
+      expect(response_body["campground"]["utilities"]).to eq false
+      expect(response_body["campground"]["waste"]).to eq true
+    end
+
+    context "when a malformed request is made" do
+      let!(:bad_campground_hash_1) { { campground: { website: "https://minutemancampground.com/" } } }
+      let!(:bad_campground_hash_2) { { campground: { name: "Minuteman Campground" } } }
+      let!(:bad_campground_hash_3) { { campground: { name: "Minuteman Campground", website: "minutemancampground.com/" } } }
+      let!(:bad_campground_hash_4) { { campground: { name: "", website: "" } } }
+
+      it "does not create a new campground and returns an error if campground name is not provided" do
+        previous_count = Campground.count
+        post :create, params: bad_campground_hash_1, format: :json
+        new_count = Campground.count
+        response_body = JSON.parse(response.body)
+
+        expect(new_count).to eq previous_count
+        expect(response_body["error"][0]).to eq "Name can't be blank"
+      end
+
+      it "does not create a new campground and returns an error if campground street is not provided" do
+        previous_count = Campground.count
+        post :create, params: bad_campground_hash_2, format: :json
+        new_count = Campground.count
+        response_body = JSON.parse(response.body)
+
+        expect(new_count).to eq previous_count
+        expect(response_body["error"][0]).to eq "Street can't be blank"
+      end
+    end
+  end
 end

@@ -1,228 +1,281 @@
-import React, { useState } from "react"
-import _ from 'lodash'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import ErrorList from "./ErrorList"
+import ErrorList from './ErrorList'
+
+const states = [
+  "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA", "GU", "HI", "IA",
+  "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS",
+  "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA",
+  "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"
+]
 
 const NewCampgroundForm = (props) => {
-  const [submitErrors, setSubmitErrors] = useState({});
+  const stateList = ["State:"].concat(states).map(state => {
+    return(
+      <option key={state} value={state}>
+        {state}
+      </option>
+    )
+  })
 
-  const [fieldValues, setFieldValues] = useState({
-    name: "", street: "", city: "", state: "", zip: "", website: "", phone: "",
-    image: "", latitude: "", longitude: "", store: false, firewood: false,
-    bathrooms: false, showers: false, utilities: false, waste_disposal: false
-  });
-
-  const handleChange = (event) => {
-    setFieldValues({
-      ...fieldValues,
+  const handleFormTextChange = (event) => {
+    props.setFieldValues({
+      ...props.fieldValues,
       [event.currentTarget.id]: event.currentTarget.value
     });
   };
 
-  const validateForm = () => {
-    const requiredFields = ["name", "street", "city", "state", "zip", "website"];
-    let newErrors = {};
+  const handleFormIconClick = (event) => {
+    event.preventDefault();
+    props.setFieldValues({
+      ...props.fieldValues,
+      [event.currentTarget.id]: !props.fieldValues[event.currentTarget.id]
+    });
+  }
 
-    requiredFields.forEach((field) => {
-      if (fieldValues[field].trim() === "") {
-        newErrors = {
-          ...newErrors,
-          [field]: "is blank"
-        };
+  const textFieldValueTrim = () => {
+    const fieldValueKeys = Object.keys(props.fieldValues)
+    fieldValueKeys.forEach((field) => {
+      let inputValue = props.fieldValues[field];
+      if (typeof(inputValue) !== "boolean") {
+        props.setFieldValues({
+          ...props.fieldValues,
+          [field]: inputValue.trim()
+        });
       };
     });
-
-    if (!fieldValues["website"].includes("http://") &&
-      (!fieldValues["website"].includes("https://"))) {
-      newErrors = {
-        ...newErrors,
-        ["website"]: "must include full HTTP(S) address",
-      };
-    };
-
-    setSubmitErrors(newErrors);
-    return _.isEmpty(submitErrors);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (validateForm()) {
-      props.handleFormSubmit(fieldValues)
+    textFieldValueTrim()
+    if (props.validateForm()) {
+      props.handleFormSubmit(props.fieldValues)
     };
   };
 
   return(
-    <div>
+    <div className="callout new-campground-form">
       <h3>Add a campground!</h3>
+      <ErrorList errors={props.errors} />
       <form onSubmit={handleSubmit}>
-        <div className="error-list">
-          <ErrorList errors={submitErrors} />
-        </div>
+        <div className="grid-container">
+          <div className="campground-form-text-fields">
+            <div className="grid-x grid-padding-x grid-margin-x">
+              <input
+                aria-label="Campground name"
+                type="text"
+                className="medium-4 cell"
+                name="name"
+                id="name"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.name}
+                placeholder="*Campground name"
+              />
 
-        <div className="campground-form-text-fields">
-          <input
-            aria-label="Campground name"
-            type="text"
-            name="name"
-            id="name"
-            onChange={handleChange}
-            value={fieldValues.name}
-            placeholder="Campground name"
-          />
+              <input
+                aria-label="Phone number"
+                className="medium-3 cell"
+                type="text"
+                name="phone"
+                id="phone"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.phone}
+                placeholder="Phone: 555-555-5555"
+              />
 
-          <div className="campground-form-address">
-            <input
-              aria-label="Street address"
-              type="text"
-              name="street"
-              id="street"
-              onChange={handleChange}
-              value={fieldValues.street}
-              placeholder="Street"
-            />
+              <input
+                aria-label="*Website"
+                className="medium-5 cell"
+                type="text"
+                name="website"
+                id="website"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.website}
+                placeholder="Campground website: http://...."
+              />
+            </div>
 
-            <input
-              aria-label="City"
-              type="text"
-              name="city"
-              id="city"
-              onChange={handleChange}
-              value={fieldValues.city}
-              placeholder="City"
-            />
+            <div className="grid-x grid-padding-x grid-margin-x">
+              <input
+                aria-label="Street address"
+                className="medium-5 cell"
+                type="text"
+                name="street"
+                id="street"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.street}
+                placeholder="Street"
+              />
 
-            <input
-              aria-label="State"
-              type="text"
-              name="state"
-              id="state"
-              onChange={handleChange}
-              value={fieldValues.state}
-              placeholder="State"
-            />
+              <input
+                aria-label="City"
+                className="medium-3 cell"
+                type="text"
+                name="city"
+                id="city"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.city}
+                placeholder="City"
+              />
 
-            <input
-              aria-label="Zip code"
-              type="text"
-              name="zip"
-              id="zip"
-              onChange={handleChange}
-              value={fieldValues.zip}
-              placeholder="Zip code"
-            />
+              <select
+                aria-label="State"
+                className="medium-2 cell"
+                name="state"
+                id="state"
+                onChange={handleFormTextChange}
+                placeholder={{ key: "State:", value: "State:"}}
+                value={props.fieldValues.state}
+              >
+                {stateList}
+              </select>
+
+              <input
+                aria-label="Zip code"
+                className="medium-2 cell"
+                type="text"
+                name="zip"
+                id="zip"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.zip}
+                placeholder="Zip code"
+              />
+            </div>
+
+            <div className="grid-x grid-padding-x grid-margin-x">
+              <input
+                aria-label="Image URL"
+                className="medium-6 cell"
+                type="text"
+                name="image"
+                id="image"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.image}
+                placeholder="Campground photo URL: http://..."
+              />
+
+              <input
+                aria-label="Campground latitude"
+                type="text"
+                className="medium-3 cell"
+                name="latitude"
+                id="latitude"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.latitude}
+                placeholder="Latitude"
+              />
+
+              <input
+                aria-label="Campground longitude"
+                className="medium-3 cell"
+                type="text"
+                name="longitude"
+                id="longitude"
+                onChange={handleFormTextChange}
+                value={props.fieldValues.longitude}
+                placeholder="Longitude"
+              />
+            </div>
           </div>
 
-          <input
-            aria-label="Website"
-            type="text"
-            name="website"
-            id="website"
-            onChange={handleChange}
-            value={fieldValues.website}
-            placeholder="Campground website: http://...."
-          />
+          <div className="campground-form-icons">
+            <h5>Campground Services:</h5>
+            <div className="grid-x grid-padding-x">
+            <div className={`campground-form-icon-container
+              ${props.fieldValues["store"] ? "selected" : "unselected" }`}>
+                <FontAwesomeIcon
+                  icon="store"
+                  size="2x"
+                  name="store"
+                  id="store"
+                  className={`campground-form-icon
+                    ${props.fieldValues["store"] ? "selected" : "unselected" }`}
+                  onClick={handleFormIconClick}
+                />
+                <label>Store</label>
+              </div>
 
-          <input
-            aria-label="Phone number"
-            type="text"
-            name="phone"
-            id="phone"
-            onChange={handleChange}
-            value={fieldValues.phone}
-            placeholder="Phone number"
-          />
+              <div className={`campground-form-icon-container
+                ${props.fieldValues["firewood"] ? "selected" : "unselected" }`}>
+                <FontAwesomeIcon
+                  icon="tree"
+                  size="2x"
+                  name="firewood"
+                  id="firewood"
+                  className={`campground-form-icon
+                    ${props.fieldValues["firewood"] ? "selected" : "unselected" }`}
+                  onClick={handleFormIconClick}
+                />
+                <label>Firewood</label>
+              </div>
 
-          <input
-            aria-label="Image URL"
-            type="text"
-            name="image"
-            id="image"
-            onChange={handleChange}
-            value={fieldValues.image}
-            placeholder="Image URL: http://..."
-          />
+              <div className={`campground-form-icon-container
+                ${props.fieldValues["bathrooms"] ? "selected" : "unselected" }`}>
+                <FontAwesomeIcon
+                  icon="restroom"
+                  size="2x"
+                  name="bathrooms"
+                  id="bathrooms"
+                  className={`campground-form-icon
+                    ${props.fieldValues["bathrooms"] ? "selected" : "unselected" }`}
+                  onClick={handleFormIconClick}
+                />
+                <label>Firewood</label>
+              </div>
 
-          <input
-            aria-label="Campground latitude"
-            type="text"
-            name="latitude"
-            id="latitude"
-            onChange={handleChange}
-            value={fieldValues.latitude}
-            placeholder="Campground latitude"
-          />
+              <div className={`campground-form-icon-container
+                ${props.fieldValues["showers"] ? "selected" : "unselected" }`}>
+                <FontAwesomeIcon
+                  icon="shower"
+                  size="2x"
+                  name="showers"
+                  id="showers"
+                  className={`campground-form-icon
+                    ${props.fieldValues["showers"] ? "selected" : "unselected" }`}
+                  onClick={handleFormIconClick}
+                />
+                <label>Showers</label>
+              </div>
 
-          <input
-            aria-label="Campground longitude"
-            type="text"
-            name="longitude"
-            id="longitude"
-            onChange={handleChange}
-            value={fieldValues.longitude}
-            placeholder="Campground longitude"
-          />
+              <div className={`campground-form-icon-container
+                ${props.fieldValues["utilities"] ? "selected" : "unselected" }`}>
+                <FontAwesomeIcon
+                  icon="charging-station"
+                  size="2x"
+                  name="utilities"
+                  id="utilities"
+                  className={`campground-form-icon
+                    ${props.fieldValues["utilities"] ? "selected" : "unselected" }`}
+                  onClick={handleFormIconClick}
+                />
+                <label>Utilities</label>
+              </div>
+
+              <div className={`campground-form-icon-container
+                ${props.fieldValues["waste"] ? "selected" : "unselected" }`}>
+                <FontAwesomeIcon
+                  icon="trash-alt"
+                  size="2x"
+                  name="waste"
+                  id="waste"
+                  className={`campground-form-icon
+                    ${props.fieldValues["waste"] ? "selected" : "unselected" }`}
+                  onClick={handleFormIconClick}
+                />
+                <label>Waste Disposal</label>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div className="campground-form-boolean-fields">
-          <h5>Campground Services - click to add!</h5>
+        <div className="new-campground-form-submit">
           <input
-            type="checkbox"
-            name="store"
-            id="store"
-            onChange={handleChange}
-            value={fieldValues.store}
+            className="button"
+            type="submit"
+            value="Add Campground"
+            onSubmit={handleSubmit}
           />
-          <FontAwesomeIcon icon="store" size="2x" />
-
-          <input
-            type="checkbox"
-            name="firewood"
-            id="firewood"
-            onChange={handleChange}
-            value={fieldValues.firewood}
-          />
-          <FontAwesomeIcon icon="tree" size="2x" />
-
-          <input
-            type="checkbox"
-            name="bathrooms"
-            id="bathrooms"
-            onChange={handleChange}
-            value={fieldValues.bathrooms}
-          />
-          <FontAwesomeIcon icon="restroom" size="2x" />
-
-          <input
-            type="checkbox"
-            name="showers"
-            id="showers"
-            onChange={handleChange}
-            value={fieldValues.showers}
-          />
-          <FontAwesomeIcon icon="shower" size="2x" />
-
-          <input
-            type="checkbox"
-            name="utilities"
-            id="utilities"
-            onChange={handleChange}
-            value={fieldValues.utilities}
-          />
-          <FontAwesomeIcon icon="charging-station" size="2x" />
-
-          <input
-            type="checkbox"
-            name="waste"
-            id="waste"
-            onChange={handleChange}
-            value={fieldValues.waste}
-          />
-          <FontAwesomeIcon icon="trash-alt" size="2x" />
-        </div>
-
-        <div>
-          <input className="button" type="submit" />
         </div>
       </form>
     </div>
