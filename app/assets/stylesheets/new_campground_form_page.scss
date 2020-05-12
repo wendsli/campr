@@ -11,13 +11,17 @@
 
   h3 {
     padding-left: 40px;
-  };
+  }
+
+  input {
+    border-radius: 5px;
+  }
 
   div.campground-form-icon-container {
     margin: 5px;
     padding: 2px;
     padding-top: 5px;
-  };
+  }
 
   div.campground-form-icon-container.selected {
     border-radius: 5px;
@@ -26,8 +30,8 @@
 
     label {
       color: inherit;
-    };
-  };
+    }
+  }
 
   div.campground-form-icons {
     margin: auto;
@@ -36,46 +40,48 @@
     h5 {
       text-align: left;
       padding-left: 20px;
-    };
-  };
+    }
+  }
 
   .campground-form-icon {
     margin-left: 20px;
     margin-right: 20px;
-  };
+  }
 
   .unselected {
     color: gray;
-  };
+  }
 
   .selected {
     color: $campr-ivory;
-  };
+  }
 
   svg:hover {
     cursor: pointer;
-  };
+  }
 
   svg.campground-form-icon.unselected:hover{
     color: #214E34;
-  };
+  }
 
   .new-campground-form-submit {
     padding: 20px;
     padding-bottom: 0px;
 
     input.button {
+      font-size: 1rem;
+      font-weight: bold;
       color: $campr-darkblue;
       border: 2px solid $campr-darkblue;
       background: $campr-ivory;
       border-radius: 5px;
       margin-left: 20px;
       padding-left: 20px;
-    };
+    }
 
     input.button:hover {
       color: $campr-ivory;
       background: $campr-darkblue;
-    };
-  };
-};
+    }
+  }
+}
