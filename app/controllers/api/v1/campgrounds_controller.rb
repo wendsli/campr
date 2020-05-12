@@ -11,7 +11,7 @@ class Api::V1::CampgroundsController < ApplicationController
 
   def create
     render json: {
-      campground: Campground.where(website: params["website"]).first_or_create(campground_params)
+      campground: Campground.where(website: params["campground"]["website"]).first_or_create(campground_params)
     }
   end
 
