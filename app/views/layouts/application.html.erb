@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Campr</title>
+    <title>campr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
@@ -9,29 +9,43 @@
   <body>
     <div class="sticky" data-sticky data-options="marginTop:0;">
       <nav class="nav top-bar">
-          <ul class="title-area">
-            <li class="site-name">
-              <h3><a href="/">campr</a></h3>
+        <ul class="title-area">
+          <li class="name">
+            <h3 class="site-name"><a href="/">campr</a></h3>
+          </li>
+        </ul>
+        <div class="top-bar-left">
+          <ul class="vertical menu accordion-menu left" data-accordion-menu>
+            <li>
+              <a href="#">Campgrounds</a>
+              <ul class="menu vertical nested">
+                <li><a href="/campgrounds">All Campgrounds</a></li>
+                <li><a href="/campgrounds/new">Add a Campground!</a></li>
+              </ul>
             </li>
           </ul>
-        <section class="top-bar-section">
-          <ul class="left">
-            <li class="divider"></li>
-            <li><a href="/campgrounds">Campgrounds</a></li>
-            <li class="divider"></li>
-          </ul>
-        </section>
-        <section class="top-bar-right">
-          <ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="vertical menu accordion-menu" data-accordion-menu>
             <%- if current_user -%>
-              <li class="user-name"><%= current_user.user_name %></li>
-              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+              <li class="user-name">
+                <a href="#"><%= current_user.user_name %></a>
+                <ul class="menu vertical nested">
+                  <li><%= link_to 'Sign Out', destroy_user_session_path,
+                    method: :delete %>
+                  </li>
+              </li>
             <%- else -%>
-              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <li>
+                <a href="#"></a>
+                <ul class="menu vertical nested">
+                  <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                  <li><%= link_to 'Sign In', new_user_session_path %></li>
+                </ul>
+              </li>
             <%- end -%>
           </ul>
-        </section>
+        </div>
       </nav>
     </div>
     <div class="content">

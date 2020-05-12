@@ -6,6 +6,7 @@ import { faStore, faTree, faRestroom, faShower, faChargingStation, faTrashAlt } 
 library.add(faStore, faTree, faRestroom, faShower, faChargingStation, faTrashAlt)
 
 import CampgroundsIndexContainer from "../containers/CampgroundsIndexContainer"
+import NewCampgroundFormContainer from "../containers/NewCampgroundFormContainer"
 import CampgroundShowContainer from "../containers/CampgroundShowContainer"
 
 export const App = (props) => {
@@ -16,6 +17,8 @@ export const App = (props) => {
           <Route exact path="/" component={CampgroundsIndexContainer} />
           <Route exact path="/campgrounds"
             component={CampgroundsIndexContainer} />
+          <Route exact path="/campgrounds/new"
+            component={NewCampgroundFormContainer} />
           <Route exact path="/campgrounds/:id"
             component={CampgroundShowContainer} />
         </Switch>

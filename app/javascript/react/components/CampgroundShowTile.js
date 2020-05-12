@@ -4,6 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const CampgroundShowTile = (props) => {
   const camp = props.campground
 
+  let campgroundImage;
+  if (camp.image) {
+    campgroundImage = camp.image
+  } else {
+    campgroundImage =
+      "https://images.pexels.com/photos/665166/pexels-photo-665166.jpeg"
+  }
+
   let campgroundLatLong;
   if (camp.latitude & camp.longitude) {
     campgroundLatLong = `Latitude: ${camp.latitude}, Longitude: ${camp.longitude}`
@@ -86,7 +94,7 @@ const CampgroundShowTile = (props) => {
   return (
     <div className="callout campground-show-tile">
       <div className="campground-overview grid-container grid-x">
-        <img className="campground-show-image" src={camp.image} />
+        <img className="campground-show-image" src={campgroundImage} />
         <div className="campground-info">
           <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
           <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
