@@ -183,8 +183,8 @@ const NewCampgroundForm = (props) => {
           <div className="campground-form-icons">
             <h5>Campground Services:</h5>
             <div className="grid-x grid-padding-x">
-            <div className={`campground-form-icon-container
-              ${props.fieldValues["store"] ? "selected" : "unselected" }`}>
+              <div className={`campground-form-icon-container
+                ${props.fieldValues["store"] ? "selected" : "unselected" }`}>
                 <FontAwesomeIcon
                   icon="store"
                   size="2x"

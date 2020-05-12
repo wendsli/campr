@@ -19,94 +19,60 @@ const CampgroundShowTile = (props) => {
 
   let store, firewood, bathrooms, showers, utilities, waste
 
-  if (camp.store) {
-    store = <FontAwesomeIcon
-      className="campground-icon available-service-campground-icon"
-      icon="store" size="2x"
-    />
-  } else {
-    store = <FontAwesomeIcon
-      className="campground-icon unavailable-service-campground-icon"
-      icon="store" size="2x"
-    />
-  }
+  store = <div className={`campground-show-icon-container
+    ${camp["store"] ? "selected" : "unselected" }`}>
+    <FontAwesomeIcon icon="store" size="2x" />
+    <label>Store</label>
+  </div>
 
-  if (camp.firewood) {
-    firewood = <FontAwesomeIcon
-      className="campground-icon available-service-campground-icon"
-      icon="tree" size="2x"
-    />
-  } else {
-    firewood = <FontAwesomeIcon
-      className="campground-icon unavailable-service-campground-icon"
-      icon="tree" size="2x"
-    />
-  }
+  firewood = <div className={`campground-show-icon-container
+    ${camp["firewood"] ? "selected" : "unselected" }`}>
+    <FontAwesomeIcon icon="tree" size="2x" />
+    <label>Firewood</label>
+  </div>
 
-  if (camp.bathrooms) {
-    bathrooms = <FontAwesomeIcon
-      className="campground-icon available-service-campground-icon"
-      icon="restroom" size="2x"
-    />
-  } else {
-    bathrooms = <FontAwesomeIcon
-      className="campground-icon unavailable-service-campground-icon"
-      icon="restroom" size="2x"
-    />
-  }
+  bathrooms = <div className={`campground-show-icon-container
+    ${camp["bathrooms"] ? "selected" : "unselected" }`}>
+    <FontAwesomeIcon icon="restroom" size="2x" />
+    <label>Bathrooms</label>
+  </div>
 
-  if (camp.showers) {
-    showers = <FontAwesomeIcon
-      className="campground-icon available-service-campground-icon"
-      icon="shower" size="2x"
-    />
-  } else {
-    showers = <FontAwesomeIcon
-      className="campground-icon unavailable-service-campground-icon"
-      icon="shower" size="2x"
-    />
-  }
+  showers = <div className={`campground-show-icon-container
+    ${camp["showers"] ? "selected" : "unselected" }`}>
+    <FontAwesomeIcon icon="shower" size="2x" />
+    <label>Showers</label>
+  </div>
 
-  if (camp.utilities) {
-    utilities = <FontAwesomeIcon
-      className="campground-icon available-service-campground-icon"
-      icon="charging-station" size="2x"
-    />
-  } else {
-    utilities = <FontAwesomeIcon
-      className="campground-icon unavailable-service-campground-icon"
-      icon="charging-station" size="2x"
-    />
-  }
+  utilities = <div className={`campground-show-icon-container
+    ${camp["utilities"] ? "selected" : "unselected" }`}>
+    <FontAwesomeIcon icon="charging-station" size="2x" />
+    <label>Utilities</label>
+  </div>
 
-  if (camp.waste) {
-    waste = <FontAwesomeIcon
-      className="campground-icon available-service-campground-icon"
-      icon="trash-alt" size="2x"
-    />
-  } else {
-    waste = <FontAwesomeIcon
-      className="campground-icon unavailable-service-campground-icon"
-      icon="trash-alt" size="2x"
-    />
-  }
+  waste = <div className={`campground-show-icon-container
+    ${camp["waste"] ? "selected" : "unselected" }`}>
+    <FontAwesomeIcon icon="trash-alt" size="2x" />
+    <label>Waste Disposal</label>
+  </div>
 
   return (
     <div className="callout campground-show-tile">
       <div className="campground-overview grid-container grid-x">
-        <img className="campground-show-image" src={campgroundImage} />
+        <div className="campground-show-image-container">
+          <img className="campground-show-image" src={campgroundImage} />
+        </div>
         <div className="campground-info">
           <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
           <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
           <p><a href="tel:${camp.phone}">{camp.phone}</a></p>
           <p>{campgroundLatLong}</p>
-          <div className="campground-icons">
-          {store}
-          {firewood}
-          {bathrooms}
-          {showers}
-          {utilities}
-          {waste}
+          <div className="campground-show-icons grid-x grid-padding-x">
+            {store}
+            {firewood}
+            {bathrooms}
+            {showers}
+            {utilities}
+            {waste}
           </div>
         </div>
       </div>

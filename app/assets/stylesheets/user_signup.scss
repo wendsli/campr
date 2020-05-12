@@ -1,0 +1,46 @@
+@import "campr_colors";
+
+.callout.user-signup {
+  background-color: rgba(254,254,238,0.9);
+  color: $campr-darkblue;
+  border-radius: 20px;
+  max-width: 60%;
+  float: none;
+  margin: auto;
+  margin-top: 3rem;
+
+  h2 {
+    margin-left: 2rem;
+  }
+
+  .field {
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+    input {
+      border-radius: 5px;
+    }
+  }
+
+  .actions {
+    margin: 1rem;
+    margin-left: 2rem;
+    display: inline-block;
+
+    input {
+      font-size: 1rem;
+      font-weight: bold;
+      color: $campr-darkblue;
+      border: 2px solid $campr-darkblue;
+      background: $campr-ivory;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    input:hover {
+      cursor: pointer;
+      color: $campr-ivory;
+      background: $campr-darkblue;
+    }
+  }
+}

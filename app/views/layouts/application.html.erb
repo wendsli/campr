@@ -19,8 +19,8 @@
             <li>
               <a href="#">Campgrounds</a>
               <ul class="menu vertical nested">
-                <li><a href="/campgrounds">All Campgrounds</a></li>
-                <li><a href="/campgrounds/new">Add a Campground!</a></li>
+                <li><a href="/campgrounds">Browse</a></li>
+                <li><a href="/campgrounds/new">Add</a></li>
               </ul>
             </li>
           </ul>
@@ -28,7 +28,7 @@
         <div class="top-bar-right">
           <ul class="vertical menu accordion-menu" data-accordion-menu>
             <%- if current_user -%>
-              <li class="user-name">
+              <li class="user-name-dropdown">
                 <a href="#"><%= current_user.user_name %></a>
                 <ul class="menu vertical nested">
                   <li><%= link_to 'Sign Out', destroy_user_session_path,
@@ -36,8 +36,8 @@
                   </li>
               </li>
             <%- else -%>
-              <li>
-                <a href="#"></a>
+              <li class="account-dropdown">
+                <a href="#">Account</a>
                 <ul class="menu vertical nested">
                   <li><%= link_to 'Sign Up', new_user_registration_path %></li>
                   <li><%= link_to 'Sign In', new_user_session_path %></li>
