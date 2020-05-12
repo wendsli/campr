@@ -11,7 +11,7 @@ class Api::V1::CampgroundsController < ApplicationController
 
   def create
     render json: {
-      campground: Campground.where(website: params["campground"]["website"]).first_or_create(campground_params)
+      campground: Campground.where(website: params["campground"]["website"]).first_or_create!(campground_params)
     }
   end
 
@@ -20,8 +20,7 @@ class Api::V1::CampgroundsController < ApplicationController
   def campground_params
     params.require(:campground).permit(
       :name, :street, :city, :state, :zip, :website, :phone, :image, :latitude,
-        :longitude, :store, :firewood, :bathrooms, :showers, :utilities,
-        :waste
+      :longitude, :store, :firewood, :bathrooms, :showers, :utilities, :waste
     )
   end
 end

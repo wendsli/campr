@@ -222,7 +222,7 @@ const NewCampgroundForm = (props) => {
                     ${props.fieldValues["bathrooms"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Firewood</label>
+                <label>Bathrooms</label>
               </div>
 
               <div className={`campground-form-icon-container

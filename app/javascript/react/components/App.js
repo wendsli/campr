@@ -17,7 +17,7 @@ export const App = (props) => {
           <Route exact path="/" component={CampgroundsIndexContainer} />
           <Route exact path="/campgrounds"
             component={CampgroundsIndexContainer} />
-            <Route exact path="/campgrounds/new"
+          <Route exact path="/campgrounds/new"
             component={NewCampgroundFormContainer} />
           <Route exact path="/campgrounds/:id"
             component={CampgroundShowContainer} />
