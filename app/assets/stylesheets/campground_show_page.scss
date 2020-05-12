@@ -5,29 +5,27 @@
   border-radius: 20px;
   border-width: 3px;
   border-color: #202D41;
-  max-width: 90%;
-  float: none;
+  max-width: 60%;
+  float: right;
   margin: auto;
-  margin-top: 3rem;
+  margin-top: 1rem;
+  text-align: center;
 
-  .campground-overivew {
-    display: inline-block;
+  .campground-show-image-container {
+    margin-left: auto;
+    margin-right: auto;
 
-    .grid-container.grid-x {
-      padding: 2rem;
+    img.campground-show-image {
+      max-width: 80%;
+      min-width: 80%;
+      border-radius: 20px;
+      padding: 5px;
     }
   }
 
-  img {
-    align-self: left;
-    max-width: 50%;
-    border-radius: 20px;
-    padding: 5px;
-    margin-right: 2rem;
-  }
-
-  .campground-info {
-    align: middle;
+  div.campground-info {
+    margin-left: auto;
+    margin-right: auto;
 
     a {
       color: #202D41;
@@ -36,13 +34,20 @@
 
     p {
       color: #202D41;
+      margin: 0;
     }
+  }
+
+  div.campground-show-icons {
+    margin: auto;
+    line-height: normal;
   }
 
   div.campground-show-icon-container {
     margin: 5px;
     padding: 5px;
     padding-top: 10px;
+    min-width: 60px;
   }
 
   div.campground-show-icon-container.selected {
@@ -53,11 +58,6 @@
     label {
       color: inherit;
     }
-  }
-
-  div.campground-show-icons {
-    margin: auto;
-    text-align: center;
   }
 
   .campground-show-icon {
