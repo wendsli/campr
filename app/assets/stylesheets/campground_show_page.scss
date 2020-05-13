@@ -3,8 +3,6 @@
 .callout.campground-show-tile {
   background-color: rgba(254,254,238,0.9);
   border-radius: 20px;
-  border-width: 3px;
-  border-color: #202D41;
   max-width: 60%;
   float: right;
   margin: auto;
@@ -34,6 +32,7 @@
 
     p {
       color: #202D41;
+      font-weight: 500;
       margin: 0;
     }
   }
@@ -47,6 +46,7 @@
     margin: 5px;
     padding: 5px;
     padding-top: 10px;
+    padding-bottom: 10px;
     min-width: 60px;
   }
 

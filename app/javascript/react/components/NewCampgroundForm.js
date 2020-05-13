@@ -190,11 +190,11 @@ const NewCampgroundForm = (props) => {
                   size="2x"
                   name="store"
                   id="store"
+                  title="Store"
                   className={`campground-form-icon
                     ${props.fieldValues["store"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Store</label>
               </div>
 
               <div className={`campground-form-icon-container
@@ -204,11 +204,11 @@ const NewCampgroundForm = (props) => {
                   size="2x"
                   name="firewood"
                   id="firewood"
+                  title="Firewood"
                   className={`campground-form-icon
                     ${props.fieldValues["firewood"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Firewood</label>
               </div>
 
               <div className={`campground-form-icon-container
@@ -218,11 +218,11 @@ const NewCampgroundForm = (props) => {
                   size="2x"
                   name="bathrooms"
                   id="bathrooms"
+                  title="Flush Toilets"
                   className={`campground-form-icon
                     ${props.fieldValues["bathrooms"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Bathrooms</label>
               </div>
 
               <div className={`campground-form-icon-container
@@ -232,11 +232,11 @@ const NewCampgroundForm = (props) => {
                   size="2x"
                   name="showers"
                   id="showers"
+                  title="Showers"
                   className={`campground-form-icon
                     ${props.fieldValues["showers"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Showers</label>
               </div>
 
               <div className={`campground-form-icon-container
@@ -246,11 +246,11 @@ const NewCampgroundForm = (props) => {
                   size="2x"
                   name="utilities"
                   id="utilities"
+                  title="Utilities"
                   className={`campground-form-icon
                     ${props.fieldValues["utilities"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Utilities</label>
               </div>
 
               <div className={`campground-form-icon-container
@@ -260,11 +260,11 @@ const NewCampgroundForm = (props) => {
                   size="2x"
                   name="waste"
                   id="waste"
+                  title="Waste Disposal"
                   className={`campground-form-icon
                     ${props.fieldValues["waste"] ? "selected" : "unselected" }`}
                   onClick={handleFormIconClick}
                 />
-                <label>Waste Disposal</label>
               </div>
             </div>
           </div>
