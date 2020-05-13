@@ -19,18 +19,19 @@
 
   div.campground-form-icon-container {
     margin: 5px;
-    padding: 2px;
     padding-top: 5px;
+    border-radius: 5px;
+    color: $campr-ivory
+  }
+
+  div.campground-form-icon-container.unselected {
+    border-radius: 5px;
+    background-color: #BEBEBE;
   }
 
   div.campground-form-icon-container.selected {
     border-radius: 5px;
-    color: $campr-ivory;
     background-color: #214E34;
-
-    label {
-      color: inherit;
-    }
   }
 
   div.campground-form-icons {
@@ -41,19 +42,15 @@
       text-align: left;
       padding-left: 20px;
     }
-  }
 
-  .campground-form-icon {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+    .campground-form-icon {
+      margin: 10px;
+      min-width: 50px;
+    }
 
-  .unselected {
-    color: gray;
-  }
-
-  .selected {
-    color: $campr-ivory;
+    .selected {
+      color: $campr-ivory;
+    }
   }
 
   svg:hover {
@@ -62,26 +59,30 @@
 
   svg.campground-form-icon.unselected:hover{
     color: #214E34;
+
+    label {
+      color: #214E34;
+    }
   }
 
   .new-campground-form-submit {
-    padding: 20px;
+    padding-top: 20px;
     padding-bottom: 0px;
 
     input.button {
       font-size: 1rem;
       font-weight: bold;
-      color: $campr-darkblue;
+      color: $campr-ivory;
       border: 2px solid $campr-darkblue;
-      background: $campr-ivory;
+      background: $campr-darkblue;
       border-radius: 5px;
       margin-left: 20px;
       padding-left: 20px;
     }
 
     input.button:hover {
-      color: $campr-ivory;
-      background: $campr-darkblue;
+      color: $campr-darkblue;
+      background: $campr-ivory;
     }
   }
 }
