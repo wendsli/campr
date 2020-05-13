@@ -1,10 +1,10 @@
 import React from "react";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
 const CampgroundShowMap = withScriptjs(withGoogleMap((props) => {
   return (
     <GoogleMap
-      className="callout campgroudn-show-map"
+      className="callout campground-show-map"
       defaultZoom={8}
       center={{lat: props.latitude, lng: props.longitude}}
     >
