@@ -34,15 +34,17 @@ const CampgroundShowContainer = (props) => {
   return(
     <div className="grid-container grid-x grid-margin-x campground-show-layout">
       <div className="cell callout map-and-weather medium-4">
-        <CampgroundShowMap
-          latitude={parseFloat(campground.latitude)}
-          longitude={parseFloat(campground.longitude)}
-          isMarkerShown={true}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOBSMrSGGkPkNlhDdTAKwM55ZNsght8Yg&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `300px` }} />}
-          mapElement={<div style={{ height: `100%`}} />}
-        />
+        <div className="map">
+          <CampgroundShowMap
+            latitude={parseFloat(campground.latitude)}
+            longitude={parseFloat(campground.longitude)}
+            isMarkerShown={true}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOBSMrSGGkPkNlhDdTAKwM55ZNsght8Yg&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `300px` }} />}
+            mapElement={<div style={{ height: `100%`}} />}
+          />
+        </div>
         <hr className="divider solid" />
         <CampgroundShowWeatherTile weather={weather}/>
       </div>

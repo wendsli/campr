@@ -1,6 +1,6 @@
 class OpenWeatherClient
 
-  def initialize (campground_zip)
+  def initialize(campground_zip)
     @campground_zip = campground_zip
   end
 
@@ -13,7 +13,11 @@ class OpenWeatherClient
       temp: parsed_weather["main"]["temp"],
       low: parsed_weather["main"]["temp_min"],
       high: parsed_weather["main"]["temp_max"],
-      humidity: parsed_weather["main"]["humidity"]
+      humidity: parsed_weather["main"]["humidity"],
+      date: Time.at(parsed_weather["dt"]).strftime("%a %d %b"),
+      location: parsed_weather["name"],
+      description: parsed_weather["weather"][0]["description"],
+      wind: parsed_weather["wind"]["speed"]
     }
   end
 

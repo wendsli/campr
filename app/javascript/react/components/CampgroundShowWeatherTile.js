@@ -19,22 +19,45 @@ const CampgroundShowWeatherTile = (props) => {
     weatherIcon = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
   }
 
+  let tinyWeatherIcon;
+  if (weather.icon) {
+    tinyWeatherIcon = `http://openweathermap.org/img/wn/${weather.icon}.png`
+  }
+
   return (
     <div className="callout campground-show-weather-tile">
-      <div className="main-weather-data">
-        <img className="campground-show-weather-icon"
-          src={weatherIcon}
-        />
-        <h4>{weather.conditions}&nbsp;&nbsp;|&nbsp;&nbsp;{temp}&deg;F</h4>
+      <div className="grid-container">
+        <div className="grid-x weather-location-and-icon">
+          <div className="grid-y weather-place-and-date">
+            <h4>{weather.location}</h4>
+            <p className="weather-date">{weather.date}</p>
+          </div>
+          <img className="weather-icon"
+            src={weatherIcon}
+          />
+          <h4 className="weather-temp">{temp}&deg;F</h4>
+        </div>
+        <hr className="divider solid" />
+        <div className="grid-y weather-temperature">
+          <p className="weather-high-low-temp">
+            <FontAwesomeIcon icon={faTemperatureHigh} size="1x" />
+            &nbsp;&nbsp;{highTemp}&nbsp; / &nbsp;
+            <FontAwesomeIcon icon={faTemperatureLow} size="1x" />
+            &nbsp;&nbsp;{lowTemp}&nbsp;&deg;F
+          </p>
+          <p className="tiny-weather-icon-and-description">
+            <img className="tiny-weather-icon"
+              src={tinyWeatherIcon}
+            />
+            {weather.description}
+          </p>
+        </div>
+        <hr className="divider solid" />
+        <div className="grid-y weather-wind-and-humidity">
+          <p>Humidity: {weather.humidity}%</p>
+          <p>Wind: {weather.wind} mph</p>
+        </div>
       </div>
-      <h5>
-        <FontAwesomeIcon icon={faTemperatureLow} size="1x" /> {lowTemp}&deg;F
-        &nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-        <FontAwesomeIcon icon={faTemperatureHigh} size="1x" /> {highTemp}&deg;F
-      </h5>
-      <h5>
-        Humidity: {weather.humidity}%
-      </h5>
     </div>
   )
 }
