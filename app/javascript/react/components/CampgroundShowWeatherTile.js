@@ -16,7 +16,7 @@ const CampgroundShowWeatherTile = (props) => {
 
   let weatherIcon;
   if (weather.icon) {
-    weatherIcon = `http://openweathermap.org/img/wn/${weather.icon};@2x.png`
+    weatherIcon = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
   };
 
   let tinyWeatherIcon;
