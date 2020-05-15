@@ -33,7 +33,9 @@ const CampgroundShowContainer = (props) => {
 
   return(
     <div className="grid-container grid-x grid-margin-x campground-show-layout">
-      <div className="cell callout map-and-weather medium-4">
+      <div className="cell callout map-and-weather medium-5">
+        <CampgroundShowWeatherTile weather={weather}/>
+        <hr className="divider solid" />
         <div className="map">
           <CampgroundShowMap
             latitude={parseFloat(campground.latitude)}
@@ -45,8 +47,6 @@ const CampgroundShowContainer = (props) => {
             mapElement={<div style={{ height: `100%`}} />}
           />
         </div>
-        <hr className="divider solid" />
-        <CampgroundShowWeatherTile weather={weather}/>
       </div>
       <CampgroundShowTile campground={campground} />
     </div>
