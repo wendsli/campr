@@ -95,19 +95,19 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         get :show, params: {id: campground1.id}
         response_body = JSON.parse(response.body)
 
-        expect(response_body.length).to eq 19
+        expect(response_body.length).to eq 2
 
-        expect(response_body["name"]).to eq campground1.name
-        expect(response_body["website"]).to eq campground1.website
-        expect(response_body["street"]).to eq campground1.street
-        expect(response_body["city"]).to eq campground1.city
-        expect(response_body["state"]).to eq campground1.state
-        expect(response_body["zip"]).to eq campground1.zip
-        expect(response_body["phone"]).to eq campground1.phone
+        expect(response_body["campground"]["name"]).to eq campground1.name
+        expect(response_body["campground"]["website"]).to eq campground1.website
+        expect(response_body["campground"]["street"]).to eq campground1.street
+        expect(response_body["campground"]["city"]).to eq campground1.city
+        expect(response_body["campground"]["state"]).to eq campground1.state
+        expect(response_body["campground"]["zip"]).to eq campground1.zip
+        expect(response_body["campground"]["phone"]).to eq campground1.phone
 
-        expect(response_body["name"]).to_not eq campground2.name
-        expect(response_body["website"]).to_not eq campground2.website
-        expect(response_body["phone"]).to_not eq campground2.phone
+        expect(response_body["campground"]["name"]).to_not eq campground2.name
+        expect(response_body["campground"]["website"]).to_not eq campground2.website
+        expect(response_body["campground"]["phone"]).to_not eq campground2.phone
     end
   end
 
