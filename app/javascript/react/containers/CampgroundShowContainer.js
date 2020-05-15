@@ -35,8 +35,8 @@ const CampgroundShowContainer = (props) => {
         <hr className="divider solid" />
         <div className="map">
           <CampgroundShowMap
-            latitude={parseFloat(campground.latitude)}
-            longitude={parseFloat(campground.longitude)}
+            latitude={campground.latitude}
+            longitude={campground.longitude}
             isMarkerShown={true}
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOBSMrSGGkPkNlhDdTAKwM55ZNsght8Yg&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
