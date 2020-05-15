@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ReactWeather from 'react-open-weather';
+import 'react-open-weather/lib/css/ReactWeather.css';
 
-import CampgroundShowTile from '../components/CampgroundShowTile'
-import CampgroundShowMap from '../components/CampgroundShowMap'
+import CampgroundShowTile from '../components/CampgroundShowTile';
+import CampgroundShowMap from '../components/CampgroundShowMap';
+import CampgroundShowWeatherTile from '../components/CampgroundShowWeatherTile';
 
 const CampgroundShowContainer = (props) => {
   const [campground, setCampground] = useState({});
+  const [weather, setWeather] = useState({});
 
   useEffect(() => {
-  const id = props.match.params.id;
-  fetch(`/api/v1/campgrounds/${id}`)
+    const id = props.match.params.id;
+    fetch(`/api/v1/campgrounds/${id}`)
     .then((response) => {
       if (response.ok) {
         return response;
@@ -21,10 +25,11 @@ const CampgroundShowContainer = (props) => {
     })
     .then((response) => response.json())
     .then((body) => {
-      setCampground(body);
+      setCampground(body.campground);
+      setWeather(body.weather)
     })
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
-}, []);
+  }, []);
 
   return(
     <div className="grid-container grid-x grid-margin-x campground-show-layout">
@@ -38,6 +43,8 @@ const CampgroundShowContainer = (props) => {
           containerElement={<div style={{ height: `300px` }} />}
           mapElement={<div style={{ height: `100%`}} />}
         />
+        <hr className="divider solid" />
+        <CampgroundShowWeatherTile weather={weather}/>
       </div>
       <CampgroundShowTile campground={campground} />
     </div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      # get 'campgrounds/weather' => "campgrounds#weather"
       resources :campgrounds, only: [:index, :show, :create]
     end
   end

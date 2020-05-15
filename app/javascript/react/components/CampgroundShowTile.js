@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
 
 const CampgroundShowTile = (props) => {
   const camp = props.campground
@@ -14,7 +15,8 @@ const CampgroundShowTile = (props) => {
 
   let campgroundLatLong;
   if (camp.latitude & camp.longitude) {
-    campgroundLatLong = `Latitude: ${camp.latitude}, Longitude: ${camp.longitude}`
+    campgroundLatLong =
+      `Latitude: ${camp.latitude} | Longitude: ${camp.longitude}`
   }
 
   let store, firewood, bathrooms, showers, utilities, waste
@@ -58,10 +60,21 @@ const CampgroundShowTile = (props) => {
           <img className="campground-show-image" src={campgroundImage} />
         </div>
         <div className="campground-info">
-          <h5><a href={camp.website} target="_blank">{camp.name}</a></h5>
+          <h3>
+            <a href={camp.website} target="_blank">{camp.name}&nbsp;&nbsp;
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
+            </a>
+          </h3>
+          <hr className="divider solid" />
           <p>{camp.street}, {camp.city}, {camp.state}, {camp.zip}</p>
-          <p><a href="tel:${camp.phone}">{camp.phone}</a></p>
+          <p>
+            <a href="tel:${camp.phone}">
+              <FontAwesomeIcon icon={faPhoneAlt} size="1x" />&nbsp;&nbsp;
+              {camp.phone}
+            </a>
+          </p>
           <p>{campgroundLatLong}</p>
+          <hr className="divider solid" />
           <div className="campground-show-icons grid-x grid-padding-x">
             {store}
             {firewood}

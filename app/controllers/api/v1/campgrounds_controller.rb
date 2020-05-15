@@ -1,3 +1,5 @@
+require 'faraday'
+
 class Api::V1::CampgroundsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
@@ -6,12 +8,18 @@ class Api::V1::CampgroundsController < ApplicationController
   end
 
   def show
-    render json: Campground.find(params[:id])
+    campground = Campground.find(params[:id])
+    client = OpenWeatherClient.new(campground.zip)
+    weather = client.format_weather_api_response
+    
+    render json: { campground: campground, weather: weather }
   end
 
   def create
     render json: {
-      campground: Campground.where(website: params["campground"]["website"]).first_or_create!(campground_params)
+      campground: Campground.where(
+        website: params["campground"]["website"]
+      ).first_or_create!(campground_params)
     }
   end
 
