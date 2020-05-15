@@ -1,7 +1,7 @@
 import React from "react";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
-const CampgroundShowMap = withScriptjs(withGoogleMap((props) => {
+const CampgroundShowMapTile = withScriptjs(withGoogleMap((props) => {
 
   let lat = parseInt(props.latitude)
   let lng = parseInt(props.longitude)
@@ -20,4 +20,4 @@ const CampgroundShowMap = withScriptjs(withGoogleMap((props) => {
     </GoogleMap>
   )
 }))
-export default CampgroundShowMap;
+export default CampgroundShowMapTile;
