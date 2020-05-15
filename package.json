@@ -28,9 +28,7 @@
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
     "react-google-maps": "^9.4.5",
-    "react-open-weather": "^0.6.2",
     "react-router-dom": "5.0.0",
-    "react-weather": "^0.1.3",
     "redbox-react": "1.6.0"
   },
   "devDependencies": {

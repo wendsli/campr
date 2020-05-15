@@ -1,13 +1,13 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTemperatureLow, faTemperatureHigh } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTemperatureLow, faTemperatureHigh } from '@fortawesome/free-solid-svg-icons';
 
 const CampgroundShowWeatherTile = (props) => {
-  const weather = props.weather
+  const weather = props.weather;
 
   const kelvinToFahrenheit = (kelvinTemp) => {
     return parseInt((kelvinTemp - 273.15) * 9/5 + 32)
-  }
+  };
 
   const temp = kelvinToFahrenheit(weather.temp)
   const feels = kelvinToFahrenheit(weather.feels)
@@ -16,13 +16,13 @@ const CampgroundShowWeatherTile = (props) => {
 
   let weatherIcon;
   if (weather.icon) {
-    weatherIcon = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
-  }
+    weatherIcon = `http://openweathermap.org/img/wn/${weather.icon};@2x.png`
+  };
 
   let tinyWeatherIcon;
   if (weather.icon) {
     tinyWeatherIcon = `http://openweathermap.org/img/wn/${weather.icon}.png`
-  }
+  };
 
   return (
     <div className="callout campground-show-weather-tile">
@@ -59,7 +59,7 @@ const CampgroundShowWeatherTile = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CampgroundShowWeatherTile;

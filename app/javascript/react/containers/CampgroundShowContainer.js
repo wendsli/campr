@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import ReactWeather from 'react-open-weather';
-import 'react-open-weather/lib/css/ReactWeather.css';
 
 import CampgroundShowTile from '../components/CampgroundShowTile';
 import CampgroundShowMap from '../components/CampgroundShowMap';
@@ -50,7 +47,7 @@ const CampgroundShowContainer = (props) => {
       </div>
       <CampgroundShowTile campground={campground} />
     </div>
-  )
-}
+  );
+};
 
 export default CampgroundShowContainer;
