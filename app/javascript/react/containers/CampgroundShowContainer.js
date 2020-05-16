@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from "react-router-dom";
 
 import CampgroundShowTile from '../components/CampgroundShowTile';
 import CampgroundShowMapTile from '../components/CampgroundShowMapTile';
 import CampgroundShowWeatherTile from '../components/CampgroundShowWeatherTile';
 
 const CampgroundShowContainer = (props) => {
-  const [campground, setCampground] = useState({});
+  const [campground, setCampground] = useState();
   const [weather, setWeather] = useState({});
+  const [authenticationRedirect, setAuthenticationRedirect] = useState(false)
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -22,15 +24,24 @@ const CampgroundShowContainer = (props) => {
     })
     .then((response) => response.json())
     .then((body) => {
-      setCampground(body.campground);
-      setWeather(body.weather)
+      if (body.error) {
+        setAuthenticationRedirect(true)
+      } else {
+        setCampground(body.campground);
+        setWeather(body.weather)
+      };
     })
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
 
+  if (authenticationRedirect) {
+    return <Redirect to={"/users/sign_in"} />
+  }
+
   let mapTile;
-  if (campground.latitude && campground.longitude) {
-    mapTile = <CampgroundShowMapTile
+  if (campground) {
+    if (campground.latitude && campground.longitude) {
+      mapTile = <CampgroundShowMapTile
       latitude={campground.latitude}
       longitude={campground.longitude}
       isMarkerShown={true}
@@ -39,20 +50,35 @@ const CampgroundShowContainer = (props) => {
       containerElement={<div style={{ height: `300px` }} />}
       mapElement={<div style={{ height: `100%`}} />}
       />
+    } else {
+      mapTile = "Loading campground area map..."
+    }
+  }
+
+  let showTile;
+  if (campground) {
+    showTile = <CampgroundShowTile campground={campground} />
   } else {
-    mapTile = "Loading map..."
+    showTile = "Loading campground information..."
+  }
+
+  let weatherTile;
+  if (campground) {
+    weatherTile = <CampgroundShowWeatherTile weather={weather}/>
+  } else {
+    weatherTile = "Loading campground weather data..."
   }
 
   return(
     <div className="grid-container grid-x grid-margin-x campground-show-layout">
       <div className="cell callout map-and-weather medium-5">
-        <CampgroundShowWeatherTile weather={weather}/>
+        {weatherTile}
         <hr className="divider solid" />
         <div className="map">
           {mapTile}
         </div>
       </div>
-      <CampgroundShowTile campground={campground} />
+      {showTile}
     </div>
   );
 };

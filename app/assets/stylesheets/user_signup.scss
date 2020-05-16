@@ -30,17 +30,17 @@
     input {
       font-size: 1rem;
       font-weight: bold;
-      color: $campr-darkblue;
+      color: $campr-ivory;
       border: 2px solid $campr-darkblue;
-      background: $campr-ivory;
+      background: $campr-darkblue;
       border-radius: 5px;
       padding: 10px;
     }
 
     input:hover {
       cursor: pointer;
-      color: $campr-ivory;
-      background: $campr-darkblue;
+      color: $campr-darkblue;
+      background: $campr-ivory;
     }
   }
 }
