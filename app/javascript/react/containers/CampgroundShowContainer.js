@@ -8,7 +8,6 @@ import CampgroundShowWeatherTile from '../components/CampgroundShowWeatherTile';
 const CampgroundShowContainer = (props) => {
   const [campground, setCampground] = useState();
   const [weather, setWeather] = useState({});
-  const [authenticationRedirect, setAuthenticationRedirect] = useState(false)
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -24,19 +23,11 @@ const CampgroundShowContainer = (props) => {
     })
     .then((response) => response.json())
     .then((body) => {
-      if (body.error) {
-        setAuthenticationRedirect(true)
-      } else {
-        setCampground(body.campground);
-        setWeather(body.weather)
-      };
+      setCampground(body.campground);
+      setWeather(body.weather)
     })
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
-
-  if (authenticationRedirect) {
-    return <Redirect to={"/users/sign_in"} />
-  }
 
   let mapTile;
   if (campground) {

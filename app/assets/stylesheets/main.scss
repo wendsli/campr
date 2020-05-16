@@ -61,9 +61,21 @@ nav.top-bar {
 .content {
   margin: 2rem;
 
-  .flash {
+  .loading {
     color: $campr-ivory;
+  }
+
+  div.callout.flash {
+    background-color: $campr-darkblue;
+    color: $campr-ivory;
+    font-weight: bold;
+    font-size: 20px;
     padding-bottom: 2rem;
+    border-radius: 20px;
+    border: 3px solid $campr-ivory;
+    text-align: center;
+    padding: auto;
+    max-width: 50%
   }
 }
 

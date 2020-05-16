@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/', to: "static_pages#index"
   get '/campgrounds', to: "static_pages#index"
   get '/campgrounds/new', to: "static_pages#authenticate"
-  get '/campgrounds/:id', to: "static_pages#authenticate"
+  get '/campgrounds/:id', to: "static_pages#index"
 
   namespace :api do
     namespace :v1 do
