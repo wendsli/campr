@@ -55,7 +55,7 @@ nav.top-bar {
 }
 
 .sticky {
-  width: 100%
+  width: 100%;
 }
 
 .content {
@@ -70,12 +70,11 @@ nav.top-bar {
     color: $campr-ivory;
     font-weight: bold;
     font-size: 20px;
-    padding-bottom: 2rem;
     border-radius: 20px;
     border: 3px solid $campr-ivory;
     text-align: center;
     padding: auto;
-    max-width: 50%
+    max-width: 50%;
   }
 }
 
