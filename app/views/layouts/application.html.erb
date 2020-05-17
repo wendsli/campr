@@ -50,8 +50,8 @@
     </div>
     <div class="content">
       <%- flash.each do |key, value| -%>
-        <div class="flash flash-<%= key %>">
-          <%= value %>
+        <div class="callout flash flash-<%= key %>">
+          <p class="flash-text"><%= value %></p>
         </div>
       <%- end -%>
 

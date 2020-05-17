@@ -25,7 +25,7 @@ const CampgroundsIndexContainer = (props) => {
 
   let campgroundTiles;
   if (campgrounds.length === 0) {
-    campgroundTiles = <p>(Loading campgrounds...)</p>
+    campgroundTiles = <p className="loading">Loading campground data...</p>
   } else {
     campgroundTiles = campgrounds.map((campground) => {
         return <CampgroundIndexTile key={campground.id}
