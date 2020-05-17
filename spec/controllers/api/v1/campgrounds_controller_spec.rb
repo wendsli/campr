@@ -95,7 +95,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         get :show, params: {id: campground1.id}
         response_body = JSON.parse(response.body)
 
-        expect(response_body.length).to eq 2
+        expect(response_body.length).to eq 19
 
         expect(response_body["campground"]["name"]).to eq campground1.name
         expect(response_body["campground"]["website"]).to eq campground1.website

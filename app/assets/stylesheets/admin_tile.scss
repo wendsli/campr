@@ -1,0 +1,29 @@
+@import "campr_colors";
+
+.callout.admin-tile {
+  background-color: $campr-ivory;
+  border: 2px solid $campr-red;
+  border-radius: 20px;
+  max-width: 50%;
+  margin: auto;
+  color: $campr-darkblue;
+  font-size: 20px;
+
+  input.button {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $campr-ivory;
+    border: 2px solid $campr-red;
+    background: $campr-red;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    margin-left: 1rem;
+  }
+
+  input.button:hover {
+    cursor: pointer;
+    color: $campr-red;
+    background: $campr-ivory;
+  }
+}
