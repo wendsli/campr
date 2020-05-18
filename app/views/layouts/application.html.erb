@@ -29,7 +29,7 @@
           <ul class="vertical menu accordion-menu" data-accordion-menu>
             <%- if current_user -%>
               <li class="user-name-dropdown">
-                <a href="#"><%= current_user.user_name %></a>
+                <a href="#">Account</a>
                 <ul class="menu vertical nested">
                   <li><%= link_to 'Sign Out', destroy_user_session_path,
                     method: :delete %>
@@ -69,4 +69,16 @@
       <%= yield :extra_footer %>
     </div>
   </body>
+  <footer>
+    <span class="footer built-by">built by wesley davis</span>
+    <span class="footer social-links">
+      <a href="https://www.linkedin.com/in/wesleyadavis/" class="linkedin">
+        linkedin
+      </a>
+      <span class="divider">|</span>
+      <a href="https://www.github.com/wendsli" target="_blank" class="github">
+        github
+      </a>
+    </span>
+  </footer>
 </html>

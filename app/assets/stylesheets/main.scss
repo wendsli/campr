@@ -3,22 +3,96 @@
 body {
   background-image: url(brandon-montrone-green-pine-trees-muted.jpeg);
   background-size: cover;
+  font-family: 'Cormorant Garamond', serif;
 
   a:hover {
     text-decoration: underline;
   }
+
+  p {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-family: 'Cormorant Unicase', serif;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-family: 'Cormorant Unicase', serif;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-family: 'Cormorant Unicase', serif;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-family: 'Cormorant Unicase', serif;
+  }
+
+  h5 {
+    font-weight: bold;
+    font-family: 'Cormorant Unicase', serif;
+  }
+
+  h6 {
+    font-weight: bold;
+    font-family: 'Cormorant Unicase', serif;
+  }
+
+  label {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  input {
+    font-weight: bold;
+    font-size: 2rem;
+
+    .button {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  }
+
+  input#user_user_name {
+    font-size: 1.5rem;
+  }
+
+  input#user_email {
+    font-size: 1.5rem;
+  }
+
+  input#user_password {
+    font-size: 1.5rem;
+  }
+
+  input#user_password_confirmation {
+    font-size: 1.5rem;
+  }
+
+  
 }
 
 nav.top-bar {
   background-color: $campr-darkblue;
   border-bottom: 3px solid $campr-ivory;
   padding-bottom: 0rem;
+  font-family: 'Cormorant Garamond', serif;
 
   .title-area {
     margin: 0;
     margin-left: 1rem;
     margin-right: 1rem;
-    padding-bottom: 1rem;
+    font-size: 2rem;
+
+    a {
+      font-family: 'Cormorant Unicase', serif;
+    }
   }
 
   ul {
@@ -30,7 +104,6 @@ nav.top-bar {
 
   a {
     color: $campr-ivory;
-    padding: 10px 10px;
   }
 
   .user-name-dropdown {
@@ -42,7 +115,12 @@ nav.top-bar {
   }
 
   .vertical.menu.accordion-menu {
-    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    padding-bottom: 5px;
+
+    a {
+      margin-left: 2rem;
+    }
 
     ::after {
       border-top-color: $campr-ivory;
@@ -78,15 +156,26 @@ nav.top-bar {
   }
 }
 
+div.callout.campground-index-tile:hover {
+  border-radius: 20px;
+  border-width: 3px;
+  border-color: $campr-darkblue;
+}
+
 .campground-index-tile {
   border-radius: 20px;
-  border-color: $campr-darkblue;
+  border-color: rgba(254,254,238,0.94);
   border-width: 3px;
-  background-color: rgba(254,254,238,0.85);
+  background-color: rgba(254,254,238,0.94);
 
   .campground-index-image {
     border-radius: 20px;
     padding: 5px;
+  }
+
+  p {
+    font-weight: bold;
+    font-size: 1.5rem;
   }
 
   a {
@@ -95,6 +184,49 @@ nav.top-bar {
 
     h5 {
       font-weight: bold;
+      font-family: 'Roboto';
+      font-size: 2rem;
+    }
+  }
+}
+
+footer {
+  height: 2rem;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  line-height: 2rem;
+  background-color: $campr-ivory;
+  color: $campr-darkblue;
+  width: 100%;
+  border-top: 2px solid $campr-darkblue;
+  font-weight: bold;
+
+  .built-by {
+    float: left;
+    margin-left: 2rem;
+  }
+
+  .social-links {
+    float: right;
+    margin-right: 2rem;
+
+    a {
+      color: $campr-darkblue;
+      border-radius: 5px;
+      border: 1px solid $campr-ivory;
+      background-color: $campr-ivory;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      padding-left: 5px;
+      padding-right: 3px;
+    }
+
+    a:hover {
+        color: $campr-ivory;
+        text-decoration: none;
+        border: 1px solid $campr-ivory;
+        background-color: $campr-darkblue;
     }
   }
 }

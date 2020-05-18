@@ -7,11 +7,12 @@
   max-width: 75%;
   margin: auto;
   color: $campr-darkblue;
-  font-size: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
   text-align: center;
 
   button.admin-edit-campground {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
     color: $campr-ivory;
     border: 2px solid $campr-red;
@@ -29,7 +30,7 @@
   }
 
   button.admin-delete-campground {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
     color: $campr-red;
     border: 2px solid $campr-red;
