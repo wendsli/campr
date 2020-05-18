@@ -355,7 +355,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       patch :update, params: { id: campground1.id, campground: incomplete_campground }
       response_body = JSON.parse(response.body)
 
-      expect(response_body['errors']).to eq "Rating can't be blank and Rating is not a number"
+      expect(response_body['errors']).to eq "Name is blank and Zip is blank"
     end
   end
 end
