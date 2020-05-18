@@ -34,13 +34,16 @@
       color: $campr-darkblue;
       background-color: rgba(254,254,238,0.8);
       border-radius: 5px;
-      border: 2px solid rgba(254,254,238,0.8);
+      border-width: 2px;
+      border-color: rgba(254,254,238,0.8);
     }
 
     a:hover {
       text-decoration: none;
       background-color: $campr-darkblue;
       color: rgba(254,254,238,0.8);
+      border-width: 2px;
+      border-color: $campr-ivory;
     }
   }
 }

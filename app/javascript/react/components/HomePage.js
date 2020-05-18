@@ -10,8 +10,8 @@ const HomePage = () => {
         </h1>
       </div>
       <div className="home-page-links">
-        <Link className="browse" to={"/campgrounds"}>Browse</Link>
-        <a className="add" href="/campgrounds/new">Add</a>
+        <Link className="browse" to={"/campgrounds"}>Browse Campgrounds</Link>
+        <a className="add" href="/campgrounds/new">Add a Campground</a>
         <a className="signin" href="/users/sign_in">Sign In</a>
       </div>
     </div>
