@@ -2,19 +2,14 @@ class Api::V1::CampgroundsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    render json: Campground.all
+    render json: Campground.all, each_serializer: Api::V1::CampgroundIndexSerializer
   end
 
   def show
-    campground = Campground.find(params[:id])
-    client = OpenWeatherClient.new(campground.zip)
-    weather = client.format_weather_api_response
-
-    render json: { campground: campground, weather: weather }
+    render json: Campground.find(params[:id]), serializer: Api::V1::CampgroundShowSerializer
   end
 
   def create
-
     render json: {
       campground: Campground.where(
         website: params["campground"]["website"]
@@ -22,12 +17,30 @@ class Api::V1::CampgroundsController < ApplicationController
     }
   end
 
+  def update
+    updated_campground = Campground.find(params[:id])
+
+    if updated_campground.update(campground_params)
+      render json: updated_campground, serializer: Api::V1::CampgroundShowSerializer
+    else
+      render json: { errors: updated_review.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    campground = Campground.find(params[:id])
+    campground.destroy
+
+    render json: {}, status: :no_content
+  end
+
   private
 
   def campground_params
     params.require(:campground).permit(
       :name, :street, :city, :state, :zip, :website, :phone, :image, :latitude,
-      :longitude, :store, :firewood, :bathrooms, :showers, :utilities, :waste
+      :longitude, :store, :firewood, :bathrooms, :showers, :utilities, :waste,
+      :user, :weather, :campground
     )
   end
 end

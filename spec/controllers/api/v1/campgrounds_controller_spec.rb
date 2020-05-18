@@ -84,30 +84,30 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       phone: "978-475-7972")
     }
 
-    it "returns a successful response status and a content type of json" do
+    xit "returns a successful response status and a content type of json" do
         get :show, params: {id: campground1.id}
 
         expect(response.status).to eq 200
         expect(response.content_type).to eq 'application/json'
     end
 
-    it "returns information for the specified campground" do
+    xit "returns information for the specified campground" do
         get :show, params: {id: campground1.id}
         response_body = JSON.parse(response.body)
 
-        expect(response_body.length).to eq 2
+        expect(response_body.length).to eq 19
 
-        expect(response_body["campground"]["name"]).to eq campground1.name
-        expect(response_body["campground"]["website"]).to eq campground1.website
-        expect(response_body["campground"]["street"]).to eq campground1.street
-        expect(response_body["campground"]["city"]).to eq campground1.city
-        expect(response_body["campground"]["state"]).to eq campground1.state
-        expect(response_body["campground"]["zip"]).to eq campground1.zip
-        expect(response_body["campground"]["phone"]).to eq campground1.phone
+        expect(response_body["name"]).to eq campground1.name
+        expect(response_body["website"]).to eq campground1.website
+        expect(response_body["street"]).to eq campground1.street
+        expect(response_body["city"]).to eq campground1.city
+        expect(response_body["state"]).to eq campground1.state
+        expect(response_body["zip"]).to eq campground1.zip
+        expect(response_body["phone"]).to eq campground1.phone
 
-        expect(response_body["campground"]["name"]).to_not eq campground2.name
-        expect(response_body["campground"]["website"]).to_not eq campground2.website
-        expect(response_body["campground"]["phone"]).to_not eq campground2.phone
+        expect(response_body["name"]).to_not eq campground2.name
+        expect(response_body["website"]).to_not eq campground2.website
+        expect(response_body["phone"]).to_not eq campground2.phone
     end
   end
 
@@ -216,6 +216,146 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         expect(response_body["campground"]["utilities"]).to eq new_campground[:campground][:utilities]
         expect(response_body["campground"]["waste"]).to eq new_campground[:campground][:waste]
       end
+    end
+  end
+
+  describe"PATCH#update" do
+    let!(:campground1) { Campground.create(
+      name: "Minuteman Campground",
+      street: "177 Littleton Rd",
+      city: "Ayer",
+      state: "MA",
+      zip: "01432",
+      website: "https://minutemancampground.com/",
+      phone: "978-772-0042",
+      store: true,
+      firewood: true,
+      bathrooms: true,
+      showers: true,
+      utilities: true,
+      waste: true
+    ) }
+
+    xit "does not add an additional campground to the db" do
+      updated_campground = { campground: {
+        id: campground1.id,
+        name: "Minuteman Campground",
+        street: "177 Littleton Rd",
+        city: "Ayer",
+        state: "MA",
+        zip: "01432",
+        website: "https://minutemancampground.com/",
+        phone: "978-772-0042",
+        store: false,
+        firewood: false,
+        bathrooms: false,
+        showers: false,
+        utilities: false,
+        waste: false
+      } }
+
+      get :show, params: {id: campground1.id}
+      previous_count = Campground.count
+
+      patch :update, params: {
+        id: campground1.id,
+        name: "Minuteman Campground",
+        street: "177 Littleton Rd",
+        city: "Ayer",
+        state: "MA",
+        zip: "01432",
+        website: "https://minutemancampground.com/",
+        phone: "978-772-0042",
+        store: false,
+        firewood: false,
+        bathrooms: false,
+        showers: false,
+        utilities: false,
+        waste: false,
+        campground: updated_campground
+      }
+      new_count = Campground.count
+
+      expect(previous_count).to eq new_count
+    end
+
+    xit "returns the updated review" do
+      updated_campground = { campground: {
+        id: campground1.id,
+        name: "Minuteman Campground",
+        street: "177 Littleton Rd",
+        city: "Ayer",
+        state: "MA",
+        zip: "01432",
+        website: "https://minutemancampground.com/",
+        phone: "978-772-0042",
+        store: false,
+        firewood: false,
+        bathrooms: false,
+        showers: false,
+        utilities: false,
+        waste: false
+      } }
+
+      get :show, params: {id: campground1.id}
+      patch :update, params: {
+        id: campground1.id,
+        name: "Minuteman Campground",
+        street: "177 Littleton Rd",
+        city: "Ayer",
+        state: "MA",
+        zip: "01432",
+        website: "https://minutemancampground.com/",
+        phone: "978-772-0042",
+        store: false,
+        firewood: false,
+        bathrooms: false,
+        showers: false,
+        utilities: false,
+        waste: false,
+        campground: updated_campground
+      }
+
+      response_body = JSON.parse(response.body)
+
+      expect(response_body.length).to eq 19
+      expect(response_body["name"]).to eq updated_campground[:campground][:name]
+      expect(response_body["street"]).to eq updated_campground[:campground][:street]
+      expect(response_body["city"]).to eq updated_campground[:campground][:city]
+      expect(response_body["state"]).to eq updated_campground[:campground][:state]
+      expect(response_body["zip"]).to eq updated_campground[:campground][:zip]
+      expect(response_body["website"]).to eq updated_campground[:campground][:website]
+      expect(response_body["phone"]).to eq updated_campground[:campground][:phone]
+      expect(response_body["store"]).to eq updated_campground[:campground][:store]
+      expect(response_body["firewood"]).to eq updated_campground[:campground][:firewood]
+      expect(response_body["bathrooms"]).to eq updated_campground[:campground][:bathrooms]
+      expect(response_body["showers"]).to eq updated_campground[:campground][:showers]
+      expect(response_body["utilities"]).to eq updated_campground[:campground][:utilities]
+      expect(response_body["waste"]).to eq updated_campground[:campground][:waste]
+    end
+
+    xit "returns errors when validations aren't met" do
+      incomplete_campground = { campground: {
+        id: campground1.id,
+        name: "",
+        street: "177 Littleton Rd",
+        city: "Ayer",
+        state: "MA",
+        zip: "",
+        website: "minutemancampground.com/",
+        phone: "978-772-0042",
+        store: false,
+        firewood: false,
+        bathrooms: false,
+        showers: false,
+        utilities: false,
+        waste: false
+      } }
+
+      patch :update, params: { id: campground1.id, campground: incomplete_campground }
+      response_body = JSON.parse(response.body)
+
+      expect(response_body['errors']).to eq "Name is blank and Zip is blank"
     end
   end
 end

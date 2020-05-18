@@ -5,7 +5,7 @@ feature 'authenticated user visits restricted pages on the site', %Q{
   I want to access unrestricted site pages without errors
   So that I can user the site
 } do
-  scenario 'unauthenticated user tries to access campgrounds index page' do
+  scenario 'authenticated user tries to access new campground form page' do
     user = FactoryBot.create(:user)
 
     visit new_user_session_path
