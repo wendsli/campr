@@ -17,10 +17,20 @@ class Api::V1::CampgroundsController < ApplicationController
     }
   end
 
+  def update
+    updated_campground = Campground.find(params[:id])
+
+    if updated_campground.update(campground_params)
+      render json: updated_campground, serializer: Api::V1::CampgroundShowSerializer
+    else
+      render json: { errors: updated_review.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     campground = Campground.find(params[:id])
     campground.destroy
-    
+
     render json: {}, status: :no_content
   end
 
@@ -29,7 +39,8 @@ class Api::V1::CampgroundsController < ApplicationController
   def campground_params
     params.require(:campground).permit(
       :name, :street, :city, :state, :zip, :website, :phone, :image, :latitude,
-      :longitude, :store, :firewood, :bathrooms, :showers, :utilities, :waste
+      :longitude, :store, :firewood, :bathrooms, :showers, :utilities, :waste,
+      :user, :weather, :campground
     )
   end
 end

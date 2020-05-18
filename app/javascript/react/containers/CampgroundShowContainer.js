@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from "react-router-dom";
 
+import AdminTileContainer from './AdminTileContainer';
 import CampgroundShowTile from '../components/CampgroundShowTile';
 import CampgroundShowMapTile from '../components/CampgroundShowMapTile';
 import CampgroundShowWeatherTile from '../components/CampgroundShowWeatherTile';
-import AdminTile from '../components/AdminTile';
+import EditCampgroundFormContainer from './EditCampgroundFormContainer';
 
 const CampgroundShowContainer = (props) => {
   const [campground, setCampground] = useState();
-  const [redirect, setRedirect] = useState(false);
-  let mapTile, showTile, weatherTile, adminTile;
+  const [deleteRedirect, setDeleteRedirect] = useState(false);
+  const [editCampground, setEditCampground] = useState(false);
+
+  let mapTile, showTile, weatherTile, adminTile, editCampgroundTile;
+  const id = props.match.params.id
 
   useEffect(() => {
-    const id = props.match.params.id;
     fetch(`/api/v1/campgrounds/${id}`)
     .then((response) => {
       if (response.ok) {
@@ -30,9 +33,8 @@ const CampgroundShowContainer = (props) => {
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
   }, []);
 
-  let deleteClick = (event) => {
+  let handleDeleteClick = (event) => {
     event.preventDefault();
-    const id = props.match.params.id;
     fetch(`/api/v1/campgrounds/${id}`, {
       credentials: "same-origin",
       method: "DELETE",
@@ -43,7 +45,7 @@ const CampgroundShowContainer = (props) => {
     })
     .then((response) => {
       if (response.ok) {
-        setRedirect(true)
+        setDeleteRedirect(true)
       } else {
         let errorMessage = `${response.status} (${response.statusText})`;
         let error = new Error(errorMessage);
@@ -53,9 +55,33 @@ const CampgroundShowContainer = (props) => {
     .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
 
-  if (redirect === true) {
+  if (deleteRedirect === true) {
     return <Redirect to="/campgrounds" />
-  }
+  };
+
+  if (campground) {
+    if (campground.user.admin) {
+      adminTile = <AdminTileContainer
+        campground={campground}
+        handleDeleteClick={handleDeleteClick}
+        setEditCampground={setEditCampground}
+        />
+    } else {
+      adminTile = <></>
+    };
+  };
+
+  if (campground) {
+    if (campground.user.admin && editCampground === true) {
+      editCampgroundTile = <EditCampgroundFormContainer
+        campground={campground}
+        setCampground={setCampground}
+        setEditCampground={setEditCampground}
+        />
+    } else {
+      editCampgroundTile = <></>
+    }
+  };
 
   if (campground) {
     if (campground.latitude && campground.longitude) {
@@ -85,20 +111,12 @@ const CampgroundShowContainer = (props) => {
     weatherTile = "Loading campground weather data..."
   };
 
-  if (campground) {
-    if (campground.user.admin) {
-      adminTile = <AdminTile
-        campground={campground}
-        deleteClick={deleteClick}
-        />
-    } else {
-      adminTile = <></>
-    }
-  }
-
   return(
     <div>
       {adminTile}
+      <div>
+        {editCampgroundTile}
+      </div>
       <div className="grid-container grid-x grid-margin-x campground-show-layout">
         <div className="cell callout map-and-weather medium-5">
           {weatherTile}

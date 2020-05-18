@@ -4,12 +4,13 @@
   background-color: $campr-ivory;
   border: 2px solid $campr-red;
   border-radius: 20px;
-  max-width: 50%;
+  max-width: 75%;
   margin: auto;
   color: $campr-darkblue;
   font-size: 20px;
+  text-align: center;
 
-  input.button {
+  button.admin-edit-campground {
     font-size: 1rem;
     font-weight: bold;
     color: $campr-ivory;
@@ -21,9 +22,27 @@
     margin-left: 1rem;
   }
 
-  input.button:hover {
+  button.admin-edit-campground:hover {
     cursor: pointer;
     color: $campr-red;
     background: $campr-ivory;
+  }
+
+  button.admin-delete-campground {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $campr-red;
+    border: 2px solid $campr-red;
+    background: $campr-ivory;
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    margin-left: 1rem;
+  }
+
+  button.admin-delete-campground:hover {
+    cursor: pointer;
+    color: $campr-ivory;
+    background: $campr-red;
   }
 }
