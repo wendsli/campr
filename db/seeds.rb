@@ -1,12 +1,20 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-campground1 =  {
+User.create(
+  email: "user@domain.com",
+  user_name: "user1",
+  password: "userpassword"
+)
+
+User.create(
+  email: "admin@domain.com",
+  user_name: "admin1",
+  password: "adminpassword",
+  admin: true
+)
+
+Campground.create(
   name: "Minuteman Campground",
   street: "177 Littleton Rd",
   city: "Ayer",
@@ -15,17 +23,17 @@ campground1 =  {
   website: "https://minutemancampground.com/",
   phone: "978-772-0042",
   image: "https://minutemancampground.com/wp-content/uploads/2013/08/Two-Cabins-FW.jpg",
-  latitude: 0.4255035e2,
-  longitude: -0.7153736e2,
+  latitude: 42.5500,
+  longitude: -71.5368,
   store: true,
   firewood: true,
   bathrooms: false,
   showers: false,
   utilities: false,
   waste: false
-}
+)
 
-campground2 = {
+Campground.create(
   name: "Arches National Park",
   street: "PO Box 907",
   city: "Moab",
@@ -43,9 +51,9 @@ campground2 = {
   showers: false,
   utilities: false,
   waste: true
-}
+)
 
-campground3 = {
+Campground.create(
   name: "Zion National Park",
   street: "1 Zion Park Blvd., State Route 9",
   city: "Springdale",
@@ -55,12 +63,12 @@ campground3 = {
   phone: "435-772-3256",
   image:
    "https://www.nps.gov/npgallery/GetAsset/984B1AD7-155D-451F-678407719ECEB6B9/proxy/hires?",
-   latitude: 37.317207,
-   longitude: -113.022537,
-   store: true,
-   firewood: false,
-   bathrooms: true,
-   showers: false,
-   utilities: false,
-   waste: true
-}
+ latitude: 37.317207,
+ longitude: -113.022537,
+ store: true,
+ firewood: false,
+ bathrooms: true,
+ showers: false,
+ utilities: false,
+ waste: true
+)
