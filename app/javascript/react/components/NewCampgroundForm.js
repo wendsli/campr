@@ -181,7 +181,7 @@ const NewCampgroundForm = (props) => {
           </div>
 
           <div className="campground-form-icons">
-            <h5>Campground Services:</h5>
+            <h4>Campground Services:</h4>
             <div className="grid-x grid-padding-x">
               <div className={`campground-form-icon-container
                 ${props.fieldValues["store"] ? "selected" : "unselected" }`}>

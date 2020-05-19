@@ -15,6 +15,7 @@
 
   input {
     border-radius: 5px;
+    font-size: 20px;
   }
 
   div.campground-form-icon-container {
@@ -69,7 +70,7 @@
     margin-top: 1rem;
 
     input.button.submit-campground-edits {
-      font-size: 1rem;
+      font-size: 1.25rem;
       font-weight: bold;
       color: $campr-ivory;
       border: 2px solid $campr-darkblue;
@@ -84,7 +85,7 @@
     }
 
     button.button.cancel-campground-edits {
-      font-size: 1rem;
+      font-size: 1.25rem;
       font-weight: bold;
       color: $campr-darkblue;
       border: 2px solid $campr-darkblue;
