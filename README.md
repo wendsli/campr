@@ -15,15 +15,15 @@ project for the Launch Academy full-stack web development bootcamp.
 Wesley Davis
 
 ## Technologies & Versions
-[Ruby on Rails - 5.2.4.2](https://guides.rubyonrails.org/v5.2/)
-[React.js - 16.8.0](https://reactjs.org/docs/getting-started.html)
-[PostgreSQL - 12.1](https://www.postgresql.org/docs/12/index.html)
+- [Ruby on Rails - 5.2.4.2](https://guides.rubyonrails.org/v5.2/)
+- [React.js - 16.8.0](https://reactjs.org/docs/getting-started.html)
+- [PostgreSQL - 12.1](https://www.postgresql.org/docs/12/index.html)
 
 
 ## APIs
-[Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/)
-[OpenWeatherMap](https://openweathermap.org/api)
-[National Parks Service](https://www.nps.gov/subjects/digital/nps-data-api.htm)
+- [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/)
+- [OpenWeatherMap](https://openweathermap.org/api)
+- [National Parks Service](https://www.nps.gov/subjects/digital/nps-data-api.htm)
 
 #### Set up `campr` locally
 Please follow the steps below to get `campr` running locally:
