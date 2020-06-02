@@ -8,7 +8,13 @@ const CampgroundShowWeatherAndMapContainer = (props) => {
   let weatherTile, mapTile
 
   if (campground) {
-    weatherTile = <CampgroundShowWeatherTile weather={campground.weather}/>
+    if (campground.weather.code === "404") {
+      weatherTile = <div className="load-failed-message">
+        Sorry, no weather data available for this campground.
+        </div>
+    } else {
+      weatherTile = <CampgroundShowWeatherTile weather={campground.weather}/>
+    }
   } else {
     weatherTile = <div className="loading-message">
       Loading campground weather data...
@@ -39,7 +45,9 @@ const CampgroundShowWeatherAndMapContainer = (props) => {
 
   return(
     <div className="cell callout map-and-weather medium-5">
-      {weatherTile}
+      <div className="weather">
+        {weatherTile}
+      </div>
       <hr className="divider solid" />
       <div className="map">
         {mapTile}
