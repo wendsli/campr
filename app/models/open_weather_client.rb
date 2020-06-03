@@ -7,18 +7,25 @@ class OpenWeatherClient
   def format_weather_api_response
     parsed_weather = parse_weather_api_response
 
-    return {
-      conditions: parsed_weather["weather"][0]["main"],
-      icon: parsed_weather["weather"][0]["icon"],
-      temp: parsed_weather["main"]["temp"],
-      low: parsed_weather["main"]["temp_min"],
-      high: parsed_weather["main"]["temp_max"],
-      humidity: parsed_weather["main"]["humidity"],
-      date: Time.at(parsed_weather["dt"]).strftime("%a %d %b"),
-      location: parsed_weather["name"],
-      description: parsed_weather["weather"][0]["description"],
-      wind: parsed_weather["wind"]["speed"]
-    }
+    if parsed_weather["cod"] === "404"
+      return {
+        code: parsed_weather["cod"],
+        message: parsed_weather["message"]
+      }
+    else
+      return {
+        conditions: parsed_weather["weather"][0]["main"],
+        icon: parsed_weather["weather"][0]["icon"],
+        temp: parsed_weather["main"]["temp"],
+        low: parsed_weather["main"]["temp_min"],
+        high: parsed_weather["main"]["temp_max"],
+        humidity: parsed_weather["main"]["humidity"],
+        date: Time.at(parsed_weather["dt"]).strftime("%a %b %d"),
+        location: parsed_weather["name"],
+        description: parsed_weather["weather"][0]["description"],
+        wind: parsed_weather["wind"]["speed"]
+      }
+    end
   end
 
   private

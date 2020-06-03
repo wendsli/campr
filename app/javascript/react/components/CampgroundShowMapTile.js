@@ -3,8 +3,8 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 
 const CampgroundShowMapTile = withScriptjs(withGoogleMap((props) => {
 
-  let lat = parseInt(props.latitude)
-  let lng = parseInt(props.longitude)
+  let lat = parseFloat(props.latitude)
+  let lng = parseFloat(props.longitude)
 
   return (
     <GoogleMap
