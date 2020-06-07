@@ -19,7 +19,7 @@ const AdminTile = (props) => {
   let confirmDeleteButton
   if (props.deleteAttempt) {
     confirmDeleteButton = <button id={`${props.campground.id}`}
-      onClick={props.handleDeleteClick} className="admin-delete-campground"
+      onClick={props.deleteClick} className="admin-delete-campground"
       >
         Confirm Deletion
       </button>
