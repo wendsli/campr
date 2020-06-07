@@ -320,11 +320,10 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
           showers: false,
           utilities: false,
           waste: false,
-          campground: updated_campground
         }
 
         response_body = JSON.parse(response.body)
-        binding.pry
+
         expect(response_body.length).to eq 19
         expect(response_body["name"]).to eq updated_campground[:campground][:name]
         expect(response_body["street"]).to eq updated_campground[:campground][:street]
