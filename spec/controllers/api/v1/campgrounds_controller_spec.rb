@@ -84,14 +84,17 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       phone: "978-475-7972")
     }
 
-    xit "returns a successful response status and a content type of json" do
+    it "returns a successful response status and a content type of json" do
+      VCR.use_cassette('campground_show_page_cassette') do
         get :show, params: {id: campground1.id}
 
         expect(response.status).to eq 200
         expect(response.content_type).to eq 'application/json'
+      end
     end
 
-    xit "returns information for the specified campground" do
+    it "returns information for the specified campground" do
+      VCR.use_cassette('campground_show_page_cassette') do
         get :show, params: {id: campground1.id}
         response_body = JSON.parse(response.body)
 
@@ -108,6 +111,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         expect(response_body["name"]).to_not eq campground2.name
         expect(response_body["website"]).to_not eq campground2.website
         expect(response_body["phone"]).to_not eq campground2.phone
+      end
     end
   end
 

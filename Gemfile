@@ -56,3 +56,5 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails', '~> 6.5'
 gem 'webpacker', '~> 3.3'
+gem 'vcr', group: [:development, :test]
+gem 'webmock', group: [:development, :test]
