@@ -19,6 +19,19 @@ const EditCampgroundForm = (props) => {
     )
   })
 
+  let lat, lng;
+  if (props.fieldValues.latitude === null) {
+    lat = ""
+  } else {
+    lat = props.fieldValues.latitude
+  };
+
+  if (props.fieldValues.longitude === null) {
+    lng = ""
+  } else {
+    lng = props.fieldValues.longitude
+  };
+
   const handleFormTextChange = (event) => {
     props.setFieldValues({
       ...props.fieldValues,
@@ -38,7 +51,7 @@ const EditCampgroundForm = (props) => {
     const fieldValueKeys = Object.keys(props.fieldValues)
     fieldValueKeys.forEach((field) => {
       let inputValue = props.fieldValues[field];
-      if (typeof(inputValue) !== "boolean") {
+      if (typeof(inputValue) !== "boolean" && inputValue !== null) {
         props.setFieldValues({
           ...props.fieldValues,
           [field]: inputValue.trim()
@@ -163,7 +176,7 @@ const EditCampgroundForm = (props) => {
                 name="latitude"
                 id="latitude"
                 onChange={handleFormTextChange}
-                value={props.fieldValues.latitude}
+                value={lat}
                 placeholder="Latitude"
               />
 
@@ -174,7 +187,7 @@ const EditCampgroundForm = (props) => {
                 name="longitude"
                 id="longitude"
                 onChange={handleFormTextChange}
-                value={props.fieldValues.longitude}
+                value={lng}
                 placeholder="Longitude"
               />
             </div>

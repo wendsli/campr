@@ -3,13 +3,15 @@ import { Redirect } from 'react-router-dom';
 
 import CampgroundShowWeatherAndMapContainer from './CampgroundShowWeatherAndMapContainer'
 import CampgroundShowTile from '../components/CampgroundShowTile';
-import AdminTile from '../components/AdminTile';
+import AdminTileContainer from './AdminTileContainer';
+import EditCampgroundFormContainer from './EditCampgroundFormContainer';
 
 const CampgroundShowContainer = (props) => {
   const [campground, setCampground] = useState();
   const [redirect, setRedirect] = useState(false);
+  const [editCampground, setEditCampground] = useState(false);
 
-  let weatherAndMapContainer, showTile, adminTile;
+  let weatherAndMapContainer, showTile, adminTile, editCampgroundTile;
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -55,18 +57,31 @@ const CampgroundShowContainer = (props) => {
 
   if (redirect === true) {
     return <Redirect to="/campgrounds" />
-  }
+  };
 
   if (campground) {
     if (campground.user.admin) {
-      adminTile = <AdminTile
+      adminTile = <AdminTileContainer
         campground={campground}
         deleteClick={deleteClick}
+        setEditCampground={setEditCampground}
         />
     } else {
       adminTile = <></>
     }
-  }
+  };
+
+  if (campground) {
+    if (campground.user.admin && editCampground === true) {
+      editCampgroundTile = <EditCampgroundFormContainer
+        campground={campground}
+        setCampground={setCampground}
+        setEditCampground={setEditCampground}
+        />
+    } else {
+      editCampgroundTile = <></>
+    }
+  };
 
   if (campground) {
     weatherAndMapContainer = <CampgroundShowWeatherAndMapContainer
@@ -88,6 +103,9 @@ const CampgroundShowContainer = (props) => {
   return(
     <div>
       {adminTile}
+      <div>
+        {editCampgroundTile}
+      </div>
       <div className="grid-container grid-x grid-margin-x campground-show-layout">
         {weatherAndMapContainer}
         {showTile}
