@@ -19,7 +19,7 @@ class Api::V1::CampgroundsController < ApplicationController
 
   def update
     updated_campground = Campground.find(params[:id])
-
+    binding.pry
     if updated_campground.update(campground_params)
       render json: updated_campground, serializer: Api::V1::CampgroundShowSerializer
     else

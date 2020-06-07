@@ -240,7 +240,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       waste: true
     ) }
 
-    xit "does not add an additional campground to the db" do
+    it "does not add an additional campground to the db" do
       updated_campground = { campground: {
         id: campground1.id,
         name: "Minuteman Campground",
@@ -258,32 +258,34 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         waste: false
       } }
 
-      get :show, params: {id: campground1.id}
-      previous_count = Campground.count
+      VCR.use_cassette('campground_show_page_update_cassette') do
+        get :show, params: {id: campground1.id}
+        previous_count = Campground.count
 
-      patch :update, params: {
-        id: campground1.id,
-        name: "Minuteman Campground",
-        street: "177 Littleton Rd",
-        city: "Ayer",
-        state: "MA",
-        zip: "01432",
-        website: "https://minutemancampground.com/",
-        phone: "978-772-0042",
-        store: false,
-        firewood: false,
-        bathrooms: false,
-        showers: false,
-        utilities: false,
-        waste: false,
-        campground: updated_campground
-      }
-      new_count = Campground.count
+        patch :update, params: {
+          id: campground1.id,
+          name: "Minuteman Campground",
+          street: "177 Littleton Rd",
+          city: "Ayer",
+          state: "MA",
+          zip: "01432",
+          website: "https://minutemancampground.com/",
+          phone: "978-772-0042",
+          store: false,
+          firewood: false,
+          bathrooms: false,
+          showers: false,
+          utilities: false,
+          waste: false,
+          campground: updated_campground
+        }
+        new_count = Campground.count
 
-      expect(previous_count).to eq new_count
+        expect(previous_count).to eq new_count
+      end
     end
 
-    xit "returns the updated review" do
+    it "returns the updated review" do
       updated_campground = { campground: {
         id: campground1.id,
         name: "Minuteman Campground",
@@ -301,44 +303,46 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         waste: false
       } }
 
-      get :show, params: {id: campground1.id}
-      patch :update, params: {
-        id: campground1.id,
-        name: "Minuteman Campground",
-        street: "177 Littleton Rd",
-        city: "Ayer",
-        state: "MA",
-        zip: "01432",
-        website: "https://minutemancampground.com/",
-        phone: "978-772-0042",
-        store: false,
-        firewood: false,
-        bathrooms: false,
-        showers: false,
-        utilities: false,
-        waste: false,
-        campground: updated_campground
-      }
+      VCR.use_cassette('campground_show_page_update_cassette') do
+        get :show, params: {id: campground1.id}
+        patch :update, params: {
+          id: campground1.id,
+          name: "Minuteman Campground",
+          street: "177 Littleton Rd",
+          city: "Ayer",
+          state: "MA",
+          zip: "01432",
+          website: "https://minutemancampground.com/",
+          phone: "978-772-0042",
+          store: false,
+          firewood: false,
+          bathrooms: false,
+          showers: false,
+          utilities: false,
+          waste: false,
+          campground: updated_campground
+        }
 
-      response_body = JSON.parse(response.body)
-
-      expect(response_body.length).to eq 19
-      expect(response_body["name"]).to eq updated_campground[:campground][:name]
-      expect(response_body["street"]).to eq updated_campground[:campground][:street]
-      expect(response_body["city"]).to eq updated_campground[:campground][:city]
-      expect(response_body["state"]).to eq updated_campground[:campground][:state]
-      expect(response_body["zip"]).to eq updated_campground[:campground][:zip]
-      expect(response_body["website"]).to eq updated_campground[:campground][:website]
-      expect(response_body["phone"]).to eq updated_campground[:campground][:phone]
-      expect(response_body["store"]).to eq updated_campground[:campground][:store]
-      expect(response_body["firewood"]).to eq updated_campground[:campground][:firewood]
-      expect(response_body["bathrooms"]).to eq updated_campground[:campground][:bathrooms]
-      expect(response_body["showers"]).to eq updated_campground[:campground][:showers]
-      expect(response_body["utilities"]).to eq updated_campground[:campground][:utilities]
-      expect(response_body["waste"]).to eq updated_campground[:campground][:waste]
+        response_body = JSON.parse(response.body)
+        binding.pry
+        expect(response_body.length).to eq 19
+        expect(response_body["name"]).to eq updated_campground[:campground][:name]
+        expect(response_body["street"]).to eq updated_campground[:campground][:street]
+        expect(response_body["city"]).to eq updated_campground[:campground][:city]
+        expect(response_body["state"]).to eq updated_campground[:campground][:state]
+        expect(response_body["zip"]).to eq updated_campground[:campground][:zip]
+        expect(response_body["website"]).to eq updated_campground[:campground][:website]
+        expect(response_body["phone"]).to eq updated_campground[:campground][:phone]
+        expect(response_body["store"]).to eq updated_campground[:campground][:store]
+        expect(response_body["firewood"]).to eq updated_campground[:campground][:firewood]
+        expect(response_body["bathrooms"]).to eq updated_campground[:campground][:bathrooms]
+        expect(response_body["showers"]).to eq updated_campground[:campground][:showers]
+        expect(response_body["utilities"]).to eq updated_campground[:campground][:utilities]
+        expect(response_body["waste"]).to eq updated_campground[:campground][:waste]
+      end
     end
 
-    xit "returns errors when validations aren't met" do
+    it "returns errors when validations aren't met" do
       incomplete_campground = { campground: {
         id: campground1.id,
         name: "",
