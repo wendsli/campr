@@ -241,7 +241,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
     ) }
 
     it "does not add an additional campground to the db" do
-      updated_campground = { campground: {
+      updated_campground = {
         id: campground1.id,
         name: "Minuteman Campground",
         street: "177 Littleton Rd",
@@ -256,7 +256,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         showers: false,
         utilities: false,
         waste: false
-      } }
+      }
 
       VCR.use_cassette('campground_show_page_update_cassette') do
         get :show, params: {id: campground1.id}
@@ -285,8 +285,8 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       end
     end
 
-    it "returns the updated review" do
-      updated_campground = { campground: {
+    it "returns the updated campground" do
+      updated_campground = {
         id: campground1.id,
         name: "Minuteman Campground",
         street: "177 Littleton Rd",
@@ -301,7 +301,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         showers: false,
         utilities: false,
         waste: false
-      } }
+      }
 
       VCR.use_cassette('campground_show_page_update_cassette') do
         get :show, params: {id: campground1.id}
@@ -320,29 +320,31 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
           showers: false,
           utilities: false,
           waste: false,
+          campground: updated_campground
         }
 
         response_body = JSON.parse(response.body)
 
         expect(response_body.length).to eq 19
-        expect(response_body["name"]).to eq updated_campground[:campground][:name]
-        expect(response_body["street"]).to eq updated_campground[:campground][:street]
-        expect(response_body["city"]).to eq updated_campground[:campground][:city]
-        expect(response_body["state"]).to eq updated_campground[:campground][:state]
-        expect(response_body["zip"]).to eq updated_campground[:campground][:zip]
-        expect(response_body["website"]).to eq updated_campground[:campground][:website]
-        expect(response_body["phone"]).to eq updated_campground[:campground][:phone]
-        expect(response_body["store"]).to eq updated_campground[:campground][:store]
-        expect(response_body["firewood"]).to eq updated_campground[:campground][:firewood]
-        expect(response_body["bathrooms"]).to eq updated_campground[:campground][:bathrooms]
-        expect(response_body["showers"]).to eq updated_campground[:campground][:showers]
-        expect(response_body["utilities"]).to eq updated_campground[:campground][:utilities]
-        expect(response_body["waste"]).to eq updated_campground[:campground][:waste]
+        expect(response_body["name"]).to eq updated_campground[:name]
+        expect(response_body["street"]).to eq updated_campground[:street]
+        expect(response_body["city"]).to eq updated_campground[:city]
+        expect(response_body["state"]).to eq updated_campground[:state]
+        expect(response_body["zip"]).to eq updated_campground[:zip]
+        expect(response_body["website"]).to eq updated_campground[:website]
+        expect(response_body["phone"]).to eq updated_campground[:phone]
+        expect(response_body["store"]).to eq updated_campground[:store]
+        expect(response_body["firewood"]).to eq updated_campground[:firewood]
+        expect(response_body["bathrooms"]).to eq updated_campground[:bathrooms]
+        expect(response_body["showers"]).to eq updated_campground[:showers]
+        expect(response_body["utilities"]).to eq updated_campground[:utilities]
+        expect(response_body["waste"]).to eq updated_campground[:waste]
       end
     end
 
+
     it "returns errors when validations aren't met" do
-      incomplete_campground = { campground: {
+      incomplete_campground = {
         id: campground1.id,
         name: "",
         street: "177 Littleton Rd",
@@ -357,12 +359,18 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         showers: false,
         utilities: false,
         waste: false
-      } }
+      }
 
-      patch :update, params: { id: campground1.id, campground: incomplete_campground }
-      response_body = JSON.parse(response.body)
+      VCR.use_cassette('campground_show_page_update_cassette') do
+        get :show, params: {id: campground1.id}
+        patch :update, params: { id: campground1.id, campground: incomplete_campground }
 
-      expect(response_body['errors']).to eq "Name is blank and Zip is blank"
+        response_body = JSON.parse(response.body)
+
+        expect(response_body['errors']).to include "Name can't be blank"
+        expect(response_body['errors']).to include "Zip can't be blank"
+        expect(response_body['errors']).to include "Website is invalid"
+      end
     end
   end
 end

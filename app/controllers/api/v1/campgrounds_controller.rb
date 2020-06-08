@@ -23,7 +23,7 @@ class Api::V1::CampgroundsController < ApplicationController
     if updated_campground.update(campground_params)
       render json: updated_campground, serializer: Api::V1::CampgroundShowSerializer
     else
-      render json: { errors: updated_review.errors.full_messages.to_sentence }, status: :unprocessable_entity
+      render json: { errors: updated_campground.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 

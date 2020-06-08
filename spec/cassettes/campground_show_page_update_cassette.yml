@@ -21,11 +21,11 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Sun, 07 Jun 2020 20:32:23 GMT
+      - Mon, 08 Jun 2020 19:08:36 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '465'
+      - '468'
       Connection:
       - keep-alive
       X-Cache-Key:
@@ -38,9 +38,9 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":804,"main":"Clouds","description":"overcast
-        clouds","icon":"04d"}],"base":"stations","main":{"temp":292.92,"feels_like":288.54,"temp_min":291.48,"temp_max":294.26,"pressure":1012,"humidity":42},"visibility":16093,"wind":{"speed":5.1,"deg":330},"clouds":{"all":90},"dt":1591561943,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591520952,"sunset":1591575699},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
-  recorded_at: Sun, 07 Jun 2020 20:32:23 GMT
+      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"base":"stations","main":{"temp":298.11,"feels_like":292.93,"temp_min":297.04,"temp_max":299.26,"pressure":1014,"humidity":27},"visibility":16093,"wind":{"speed":5.7,"deg":330,"gust":9.8},"clouds":{"all":1},"dt":1591643316,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591607338,"sunset":1591662135},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
+  recorded_at: Mon, 08 Jun 2020 19:08:36 GMT
 - request:
     method: get
     uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&zip=01432
@@ -62,11 +62,11 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Sun, 07 Jun 2020 20:32:23 GMT
+      - Mon, 08 Jun 2020 19:08:36 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '465'
+      - '468'
       Connection:
       - keep-alive
       X-Cache-Key:
@@ -79,7 +79,7 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":804,"main":"Clouds","description":"overcast
-        clouds","icon":"04d"}],"base":"stations","main":{"temp":292.92,"feels_like":288.54,"temp_min":291.48,"temp_max":294.26,"pressure":1012,"humidity":42},"visibility":16093,"wind":{"speed":5.1,"deg":330},"clouds":{"all":90},"dt":1591561943,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591520952,"sunset":1591575699},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
-  recorded_at: Sun, 07 Jun 2020 20:32:23 GMT
+      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"base":"stations","main":{"temp":298.11,"feels_like":292.93,"temp_min":297.04,"temp_max":299.26,"pressure":1014,"humidity":27},"visibility":16093,"wind":{"speed":5.7,"deg":330,"gust":9.8},"clouds":{"all":1},"dt":1591643316,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591607338,"sunset":1591662135},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
+  recorded_at: Mon, 08 Jun 2020 19:08:36 GMT
 recorded_with: VCR 6.0.0
