@@ -223,7 +223,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
     end
   end
 
-  describe"PATCH#update" do
+  describe "PATCH#update" do
     let!(:campground1) { Campground.create(
       name: "Minuteman Campground",
       street: "177 Littleton Rd",
@@ -260,6 +260,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
 
       VCR.use_cassette('campground_show_page_update_cassette') do
         get :show, params: {id: campground1.id}
+
         previous_count = Campground.count
 
         patch :update, params: {
@@ -279,6 +280,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
           waste: false,
           campground: updated_campground
         }
+
         new_count = Campground.count
 
         expect(previous_count).to eq new_count
@@ -326,6 +328,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         response_body = JSON.parse(response.body)
 
         expect(response_body.length).to eq 19
+
         expect(response_body["name"]).to eq updated_campground[:name]
         expect(response_body["street"]).to eq updated_campground[:street]
         expect(response_body["city"]).to eq updated_campground[:city]
@@ -370,6 +373,62 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         expect(response_body['errors']).to include "Name can't be blank"
         expect(response_body['errors']).to include "Zip can't be blank"
         expect(response_body['errors']).to include "Website is invalid"
+      end
+    end
+  end
+
+  describe "DELETE#destroy" do
+    let!(:campground1) { Campground.create(
+      name: "Minuteman Campground",
+      street: "177 Littleton Rd",
+      city: "Ayer",
+      state: "MA",
+      zip: "01432",
+      website: "https://minutemancampground.com/",
+      phone: "978-772-0042",
+      store: true,
+      firewood: true,
+      bathrooms: true,
+      showers: true,
+      utilities: true,
+      waste: true
+    ) }
+
+    it "deletes the record from the database" do
+      VCR.use_cassette('campground_show_page_cassette') do
+        get :show, params: {id: campground1.id}
+
+        previous_count = Campground.count
+
+        delete :destroy, params: { id: campground1.id }
+
+        new_count = Campground.count
+
+        expect(new_count).to eq(0)
+        expect(new_count).to eq(previous_count - 1)
+        expect(new_count).not_to eq(previous_count)
+      end
+    end
+
+    it "returns a status of 'no content'" do
+      VCR.use_cassette('campground_show_page_cassette') do
+        get :show, params: {id: campground1.id}
+        delete :destroy, params: { id: campground1.id }
+
+        response_body = JSON.parse(response.body)
+
+        expect(response.status).to eq 204
+      end
+    end
+
+    it "returns an empty object in the JSON response body" do
+      VCR.use_cassette('campground_show_page_cassette') do
+        get :show, params: {id: campground1.id}
+        delete :destroy, params: { id: campground1.id }
+
+        response_body = JSON.parse(response.body)
+
+        expect(response_body).to eq({})
       end
     end
   end
