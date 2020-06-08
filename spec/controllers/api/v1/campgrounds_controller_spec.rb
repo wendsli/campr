@@ -23,12 +23,12 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
     }
 
     let!(:campground3) { Campground.create(
-      name: "Lorraine Park Campground",
+      name: "Test Campground",
       street: "133 Jenkins Rd",
       city: "Andover",
       state: "MA",
       zip: "01810",
-      website: "https://www.mass.gov/locations/harold-parker-state-forest",
+      website: "https://www.testcampground.com/",
       phone: "978-475-7972")
     }
 
@@ -43,7 +43,30 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       get :index
       response_body = JSON.parse(response.body)
 
-      expect(response_body.length).to eq 2
+      # expect(response_body.length).to eq 2
+      expect(response_body.length).to eq 3
+
+      # expect([campground1["name"], campground2["name"]]).to include(
+      #   response_body[0]["name"], response_body[1]["name"]
+      # )
+      # expect([campground1["street"], campground2["street"]]).to include(
+      #   response_body[0]["street"], response_body[1]["street"]
+      # )
+      # expect([campground1["city"], campground2["city"]]).to include(
+      #   response_body[0]["city"], response_body[1]["city"]
+      # )
+      # expect([campground1["state"], campground2["state"]]).to include(
+      #   response_body[0]["state"], response_body[1]["state"]
+      # )
+      # expect([campground1["zip"], campground2["zip"]]).to include(
+      #   response_body[0]["zip"], response_body[1]["zip"]
+      # )
+      # expect([campground1["website"], campground2["website"]]).to include(
+      #   response_body[0]["website"], response_body[1]["website"]
+      # )
+      # expect([campground1["phone"], campground2["phone"]]).to include(
+      #   response_body[0]["phone"], response_body[1]["phone"]
+      # )
 
       expect(response_body[0]["name"]).to eq campground1.name
       expect(response_body[0]["street"]).to eq campground1.street
@@ -60,6 +83,14 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       expect(response_body[1]["zip"]).to eq campground2.zip
       expect(response_body[1]["website"]).to eq campground2.website
       expect(response_body[1]["phone"]).to eq campground2.phone
+
+      expect(response_body[2]["name"]).to eq campground3.name
+      expect(response_body[2]["street"]).to eq campground3.street
+      expect(response_body[2]["city"]).to eq campground3.city
+      expect(response_body[2]["state"]).to eq campground3.state
+      expect(response_body[2]["zip"]).to eq campground3.zip
+      expect(response_body[2]["website"]).to eq campground3.website
+      expect(response_body[2]["phone"]).to eq campground3.phone
     end
   end
 
@@ -259,8 +290,6 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       }
 
       VCR.use_cassette('campground_show_page_update_cassette') do
-        get :show, params: {id: campground1.id}
-
         previous_count = Campground.count
 
         patch :update, params: {
@@ -306,7 +335,6 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       }
 
       VCR.use_cassette('campground_show_page_update_cassette') do
-        get :show, params: {id: campground1.id}
         patch :update, params: {
           id: campground1.id,
           name: "Minuteman Campground",
@@ -364,16 +392,13 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
         waste: false
       }
 
-      VCR.use_cassette('campground_show_page_update_cassette') do
-        get :show, params: {id: campground1.id}
-        patch :update, params: { id: campground1.id, campground: incomplete_campground }
+      patch :update, params: { id: campground1.id, campground: incomplete_campground }
 
-        response_body = JSON.parse(response.body)
+      response_body = JSON.parse(response.body)
 
-        expect(response_body['errors']).to include "Name can't be blank"
-        expect(response_body['errors']).to include "Zip can't be blank"
-        expect(response_body['errors']).to include "Website is invalid"
-      end
+      expect(response_body['errors']).to include "Name can't be blank"
+      expect(response_body['errors']).to include "Zip can't be blank"
+      expect(response_body['errors']).to include "Website is invalid"
     end
   end
 
@@ -395,41 +420,31 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
     ) }
 
     it "deletes the record from the database" do
-      VCR.use_cassette('campground_show_page_cassette') do
-        get :show, params: {id: campground1.id}
+      previous_count = Campground.count
 
-        previous_count = Campground.count
+      delete :destroy, params: { id: campground1.id }
 
-        delete :destroy, params: { id: campground1.id }
+      new_count = Campground.count
 
-        new_count = Campground.count
-
-        expect(new_count).to eq(0)
-        expect(new_count).to eq(previous_count - 1)
-        expect(new_count).not_to eq(previous_count)
-      end
+      expect(new_count).to eq(0)
+      expect(new_count).to eq(previous_count - 1)
+      expect(new_count).not_to eq(previous_count)
     end
 
     it "returns a status of 'no content'" do
-      VCR.use_cassette('campground_show_page_cassette') do
-        get :show, params: {id: campground1.id}
-        delete :destroy, params: { id: campground1.id }
+      delete :destroy, params: { id: campground1.id }
 
-        response_body = JSON.parse(response.body)
+      response_body = JSON.parse(response.body)
 
-        expect(response.status).to eq 204
-      end
+      expect(response.status).to eq 204
     end
 
     it "returns an empty object in the JSON response body" do
-      VCR.use_cassette('campground_show_page_cassette') do
-        get :show, params: {id: campground1.id}
-        delete :destroy, params: { id: campground1.id }
+      delete :destroy, params: { id: campground1.id }
 
-        response_body = JSON.parse(response.body)
+      response_body = JSON.parse(response.body)
 
-        expect(response_body).to eq({})
-      end
+      expect(response_body).to eq({})
     end
   end
 end
