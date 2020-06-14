@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), 'support/shoulda')
 require File.join(File.dirname(__FILE__), 'support/valid_attribute')
 require File.join(File.dirname(__FILE__), 'support/factory_bot')
 require 'capybara/rspec'
+require 'webmock/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,4 +63,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  VCR.configure do |config|
+    config.cassette_library_dir = File.expand_path('cassettes', __dir__)
+    config.hook_into :webmock
+    config.filter_sensitive_data('<OPEN_WEATHER_API_KEY>') { ENV["OPEN_WEATHER_API_KEY"] }
+  end
 end

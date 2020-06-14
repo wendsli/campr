@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&zip=01432
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 08 Jun 2020 19:08:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '468'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?zip=01432"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"base":"stations","main":{"temp":298.11,"feels_like":292.93,"temp_min":297.04,"temp_max":299.26,"pressure":1014,"humidity":27},"visibility":16093,"wind":{"speed":5.7,"deg":330,"gust":9.8},"clouds":{"all":1},"dt":1591643316,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591607338,"sunset":1591662135},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
+  recorded_at: Mon, 08 Jun 2020 19:08:36 GMT
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&zip=01432
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Mon, 08 Jun 2020 19:08:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '468'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?zip=01432"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":800,"main":"Clear","description":"clear
+        sky","icon":"01d"}],"base":"stations","main":{"temp":298.11,"feels_like":292.93,"temp_min":297.04,"temp_max":299.26,"pressure":1014,"humidity":27},"visibility":16093,"wind":{"speed":5.7,"deg":330,"gust":9.8},"clouds":{"all":1},"dt":1591643316,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591607338,"sunset":1591662135},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
+  recorded_at: Mon, 08 Jun 2020 19:08:36 GMT
+recorded_with: VCR 6.0.0

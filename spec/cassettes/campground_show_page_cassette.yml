@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&zip=01432
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty
+      Date:
+      - Sun, 07 Jun 2020 20:20:56 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '464'
+      Connection:
+      - keep-alive
+      X-Cache-Key:
+      - "/data/2.5/weather?zip=01432"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-71.58,"lat":42.56},"weather":[{"id":804,"main":"Clouds","description":"overcast
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":293.06,"feels_like":288.7,"temp_min":291.48,"temp_max":294.82,"pressure":1012,"humidity":42},"visibility":16093,"wind":{"speed":5.1,"deg":330},"clouds":{"all":90},"dt":1591561256,"sys":{"type":1,"id":4102,"country":"US","sunrise":1591520952,"sunset":1591575699},"timezone":-14400,"id":0,"name":"Ayer","cod":200}'
+  recorded_at: Sun, 07 Jun 2020 20:20:56 GMT
+recorded_with: VCR 6.0.0
