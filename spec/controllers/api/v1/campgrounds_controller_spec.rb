@@ -43,30 +43,7 @@ RSpec.describe Api::V1::CampgroundsController, type: :controller do
       get :index
       response_body = JSON.parse(response.body)
 
-      # expect(response_body.length).to eq 2
       expect(response_body.length).to eq 3
-
-      # expect([campground1["name"], campground2["name"]]).to include(
-      #   response_body[0]["name"], response_body[1]["name"]
-      # )
-      # expect([campground1["street"], campground2["street"]]).to include(
-      #   response_body[0]["street"], response_body[1]["street"]
-      # )
-      # expect([campground1["city"], campground2["city"]]).to include(
-      #   response_body[0]["city"], response_body[1]["city"]
-      # )
-      # expect([campground1["state"], campground2["state"]]).to include(
-      #   response_body[0]["state"], response_body[1]["state"]
-      # )
-      # expect([campground1["zip"], campground2["zip"]]).to include(
-      #   response_body[0]["zip"], response_body[1]["zip"]
-      # )
-      # expect([campground1["website"], campground2["website"]]).to include(
-      #   response_body[0]["website"], response_body[1]["website"]
-      # )
-      # expect([campground1["phone"], campground2["phone"]]).to include(
-      #   response_body[0]["phone"], response_body[1]["phone"]
-      # )
 
       expect(response_body[0]["name"]).to eq campground1.name
       expect(response_body[0]["street"]).to eq campground1.street
